@@ -1,0 +1,3 @@
+# do not track images created by this project
+*.png
+*.PNG

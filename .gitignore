@@ -1,0 +1,3 @@
+# do not track scratch/dev folders
+_scratch/*
+dev/*

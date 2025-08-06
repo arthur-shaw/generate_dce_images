@@ -1,0 +1,2 @@
+# do not track choices in Stata data
+*.dta
