@@ -29,54 +29,55 @@ script_dir |>
 # ingest choice data
 # ==============================================================================
 
-choices_df <- fs::path(data_dir, "DCE_Childcare_GS.dta") |>
+choices_df <- fs::path(data_dir, "DCE_Childcare_FR.dta") |>
 	haven::read_dta() |>
-  dplyr::mutate(
-    dplyr::across(
-      .cols = dplyr::everything(),
-      .fns = ~ labelled::to_character(
-        x = .x,
-        levels = "labels"
-      )
-    )
-  ) |>
+  # if `**` is missing, provide it
+  # otherwise, keep text the same
 	dplyr::mutate(
     childcare = dplyr::case_when(
-      childcare == "0GNF/ monthly" ~ "**0** GNF/monthly",
-      childcare == "75,000 GNF/monthly" ~ "**75,000** GNF/monthly",
-      childcare == "150,000 GNF/monthly" ~ "**150,000** GNF/monthly",
-      childcare == "225,000 GNF/monthly" ~ "**225,000** GNF/monthly",
-      childcare == "300,000 GNF/monthly" ~ "**300,000** GNF/monthly",
-      childcare == "375,000 GNF/monthly" ~ "**375,000** GNF/monthly"
+      childcare_str == "0 GNF/ mois" ~ "**0** GNF/mois",
+      childcare_str == "75,000 GNF/mois" ~ "**75,000** GNF/mois",
+      childcare_str == "150,000 GNF/mois" ~ "**150,000** GNF/mois",
+      childcare_str == "225,000 GNF/mois" ~ "**225,000** GNF/mois",
+      childcare_str == "300,000 GNF/mois" ~ "**300,000** GNF/mois",
+      childcare_str == "375,000 GNF/mois" ~ "**375,000** GNF/mois",
+      .default = childcare_str
     ),
     hours = dplyr::case_when(
-      hours == "Only during the morning" ~ "Only during the **morning**",
-      hours == "Only during the afternoon" ~ "Only during the **afternoon**",
-      hours == "Full day" ~ "**Full day**"
+      hours_str == "Uniquement le matin" ~ "Uniquement **le matin**",
+      hours_str == "Uniquement l'après-midi" ~ "Uniquement **l'après-midi**",
+      hours_str == "Journée complète" ~ "**Journée complète**",
+      .default = hours_str
     ),
     location = dplyr::case_when(
-      location == "The daycare is far from home (more than 15 minutes away)" ~
-        "The daycare is **far** from home (more than 15 minutes away)",
-      location == "The daycare is close to home (less than 15 minutes away)" ~
-        "The daycare is **close** to home (less than 15 minutes away)"
+      location_str == "La garderie est loin de chez moi (à plus de 15 minutes)" ~
+        "La garderie **est loin** de chez moi (à plus de 15 minutes)",
+      location_str == "La garderie est proche de chez moi (à moins de 15 minutes)" ~
+        "La garderie **est proche** de chez moi (à moins de 15 minutes)",
+      .default = location_str
     ),
     quality = dplyr::case_when(
-      quality == "Child is with a caregiver in a safe environment" ~
-        "Child is with a caregiver in a **safe** environment",
-      quality == "Child is with a caregiver in a safe AND stimulating environment" ~
-        "Child is with a caregiver in a **safe AND stimulating** environment"
+      quality_str == "L'enfant est avec une personne qui s'occupe de lui dans un environnement sûr" ~
+        "L'enfant est avec une personne qui s'occupe de lui dans un environnement **sûr**",
+      quality_str == "L'enfant est avec une personne qui s'occupe de lui dans un environnement sûr ET stimulant" ~
+        "L'enfant est avec une personne qui s'occupe de lui dans un environnement **sûr ET stimulant**",
+      quality_str == "L'enfant est avec une personne qui s'occupe de lui dans un environnement sûr **ET stimulant**" ~
+        "L'enfant est avec une personne qui s'occupe de lui dans un environnement **sûr ET stimulant**",
+      .default = quality_str
     ),
     socialnorms = dplyr::case_when(
-      socialnorms == "Few people I know would think I am a bad parent for sending child to daycare" ~
-        "**Few people** I know would think I am a bad parent for sending child to daycare",
-      socialnorms == "Most people I know would think I am a bad parent for sending child to daycare" ~
-        "**Most people** I know would think I am a bad parent for sending child to daycare"
+      socialnorms_str == "Peu de gens que je connais penseraient que je suis un mauvais parent parce que j'envoie mon enfant à la garderie" ~
+        "**Peu de gens** que je connais penseraient que je suis un mauvais parent parce que j'envoie mon enfant à la garderie",
+      socialnorms_str == "La plupart des gens que je connais penseraient que je suis un mauvais parent si j'envoie mon enfant à la garderie" ~
+        "**La plupart des gens** que je connais penseraient que je suis un mauvais parent si j'envoie mon enfant à la garderie",
+      .default = socialnorms_str
     ),
     food = dplyr::case_when(
-      food == "The daycare does not offer food for the child" ~
-        "The daycare **does not offer** food for the child",
-      food == "The daycare offers food for the child" ~
-        "The daycare **offers** food for the child",
+      food_str == "La garderie n'offre pas de nourriture à l'enfant" ~
+        "La garderie **n'offre pas** de nourriture à l'enfant",
+      food_str == "La garderie offre de la nourriture à l'enfant" ~
+        "La garderie **offre** de la nourriture à l'enfant",
+      .default = food_str
     )
   )
 
@@ -95,12 +96,12 @@ purrr::walk(
     # first, extract data for a choice and reshape to the table format
     prepare_data(
       choice_num = .x,
-      cost_text = "Childcare services cost",
-      hours_text = "Number of available services hours",
-      location_text = "Location",
-      quality_text = "Quality",
+      cost_text = "Coûts des services de garderie",
+      hours_text = "Nombre d'heures de service disponibles",
+      location_text = "Emplacement",
+      quality_text = "Qualité",
       perceptions_text = "Perceptions",
-      food_text = "Food"
+      food_text = "Nourriture"
     ) |>
     # then, compose a {gt} table and save an image of it
     create_image(
@@ -108,5 +109,6 @@ purrr::walk(
       option_A_text = "Option A",
       option_B_text = "Option B",
       output_dir = image_dir
-    )
+    ),
+  .progress = TRUE
 )
