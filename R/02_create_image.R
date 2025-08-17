@@ -132,30 +132,46 @@ create_image <- function(
       column_labels.font.weight = "bold"
     )
 
-  # save table to an image,
-  # naming the file as `image_` plus a 3-digit left-hand zero-padded number
+  # name the file as `image_` plus a 3-digit left-hand zero-padded number
+  image_file_path <- fs::path(
+    output_dir,
+    paste0(
+      "image_",
+      stringr::str_pad(
+        string = choice_num,
+        width = 3,
+        side = "left",
+        pad = "0"
+      ),
+      ".png"
+    )
+  )
+
+  # save table to an image
   gt::gtsave(
     data = choices_table,
-    filename = fs::path(
-      output_dir,
-      paste0(
-        "image_",
-        stringr::str_pad(
-          string = choice_num,
-          width = 3,
-          side = "left",
-          pad = "0"
-        ),
-        ".png"
-      )
-    ),
-    expand = 10
+    filename = image_file_path
+  )
+
+  # construct the file path from the perspective of WSL
+  wsl_path <- paste0(
+    # pre-pend to make it a mounted volume
+    "/mnt/",
+    # convert Windows drive letter to lower case
+    tolower(substr(image_file_path, 1, 1)),
+    # get the rest of the original path, from the 3rd to last path character
+    substr(image_file_path, 3, nchar(image_file_path))
+  )
+
+  # run tool for lossy compressiom of PNG files
+  base::system2(
+    # call executable in WSL
+    "wsl",
+    # compose call
+    args = c(
+      "pngquant", "--quality=50-70", "--ext", ".png", "--force",
+      shQuote(wsl_path)
+    )
   )
 
 }
-
-# create_image(
-#   df = b,
-#   choice_num = 1,
-#   output_dir = fs::path(proj_dir, "images")
-# )
