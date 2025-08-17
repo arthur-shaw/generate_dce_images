@@ -36,11 +36,11 @@ choices_df <- fs::path(data_dir, "DCE_Childcare_FR.dta") |>
 	dplyr::mutate(
     childcare = dplyr::case_when(
       childcare_str == "0 GNF/ mois" ~ "**0** GNF/mois",
-      childcare_str == "75,000 GNF/mois" ~ "**75,000** GNF/mois",
-      childcare_str == "150,000 GNF/mois" ~ "**150,000** GNF/mois",
-      childcare_str == "225,000 GNF/mois" ~ "**225,000** GNF/mois",
-      childcare_str == "300,000 GNF/mois" ~ "**300,000** GNF/mois",
-      childcare_str == "375,000 GNF/mois" ~ "**375,000** GNF/mois",
+      childcare_str == "75,000 GNF/mois" ~ "**75 000** GNF/mois",
+      childcare_str == "150,000 GNF/mois" ~ "**150 000** GNF/mois",
+      childcare_str == "225,000 GNF/mois" ~ "**225 000** GNF/mois",
+      childcare_str == "300,000 GNF/mois" ~ "**300 000** GNF/mois",
+      childcare_str == "375,000 GNF/mois" ~ "**375 000** GNF/mois",
       .default = childcare_str
     ),
     hours = dplyr::case_when(
