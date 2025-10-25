@@ -151,7 +151,9 @@ create_image <- function(
   # save table to an image
   gt::gtsave(
     data = choices_table,
-    filename = image_file_path
+    filename = image_file_path,
+    vwidth = 720,
+    cliprect = "viewport"
   )
 
   # construct the file path from the perspective of WSL
