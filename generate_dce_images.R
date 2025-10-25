@@ -31,6 +31,16 @@ script_dir |>
 
 choices_df <- fs::path(data_dir, "DCE_Childcare_FR.dta") |>
 	haven::read_dta() |>
+  # keep only those data needed
+  # among other reasons to avoid name collision with desired variables
+  dplyr::select(
+    # image number
+    image,
+    # choice A (1) or B (2)
+    alt,
+    # string attribute levels
+    childcare_str, hours_str, location_str, quality_str
+  ) |>
   # if `**` is missing, provide it
   # otherwise, keep text the same
 	dplyr::mutate(
