@@ -44,7 +44,7 @@ choices_df <- fs::path(data_dir, "DCE_Childcare_FR.dta") |>
   # if `**` is missing, provide it
   # otherwise, keep text the same
 	dplyr::mutate(
-    childcare = dplyr::case_when(
+    cost = dplyr::case_when(
       childcare_str == "0 GNF/mois" ~ "**0** GNF/mois",
       childcare_str == "75,000 GNF/mois" ~ "**75 000** GNF/mois",
       childcare_str == "150,000 GNF/mois" ~ "**150 000** GNF/mois",
@@ -55,10 +55,10 @@ choices_df <- fs::path(data_dir, "DCE_Childcare_FR.dta") |>
     ),
     # replace any remaining commas with a space as a French thousands separator
     # in case the rules above failed to address any separators
-    childcare = dplyr::if_else(
-      condition = grepl(x = childcare, pattern = ",", fixed = TRUE),
-      true = sub(x = childcare, pattern = ",", replacement = " ", fixed = TRUE),
-      false = childcare
+    cost = dplyr::if_else(
+      condition = grepl(x = cost, pattern = ",", fixed = TRUE),
+      true = sub(x = cost, pattern = ",", replacement = " ", fixed = TRUE),
+      false = cost
     ),
     hours = dplyr::case_when(
       hours_str == "Uniquement le matin" ~ "Uniquement **le matin**",
