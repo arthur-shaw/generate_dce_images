@@ -32,11 +32,9 @@ create_image <- function(
     gt::text_transform(
       locations = gt::cells_body(columns = icon),
       fn = function(x) {
-        purrr::map_chr(
-          .x = x,
-          .f = ~ glue::glue(
-            "{fontawesome::fa(name = .x, fill = '#2e5496', width = '1.5em')}"
-          )
+        gt::local_image(
+          filename = fs::path(proj_dir, "assets", x),
+          height = 150
         )
       }
     ) |>
