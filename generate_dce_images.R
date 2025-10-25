@@ -94,6 +94,19 @@ choices_df <- fs::path(data_dir, "DCE_Childcare_FR.dta") |>
         "Avec un personnel **non-formé**",
       .default = quality_str
     )
+  ) |>
+	# keep only the desired columns
+  dplyr::select(
+    # image number
+    image,
+    # choice A (1) or B (2)
+    alt,
+    # string attribute levels
+    cost, hours, location, quality
+  ) |>
+  assertr::assert(
+    predicate = \(x) grepl(x = x, pattern = "*"),
+    cost, hours, location, quality
   )
 
 # ==============================================================================
