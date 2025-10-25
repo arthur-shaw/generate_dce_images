@@ -45,7 +45,7 @@ choices_df <- fs::path(data_dir, "DCE_Childcare_FR.dta") |>
   # otherwise, keep text the same
 	dplyr::mutate(
     childcare = dplyr::case_when(
-      childcare_str == "0 GNF/ mois" ~ "**0** GNF/mois",
+      childcare_str == "0 GNF/mois" ~ "**0** GNF/mois",
       childcare_str == "75,000 GNF/mois" ~ "**75 000** GNF/mois",
       childcare_str == "150,000 GNF/mois" ~ "**150 000** GNF/mois",
       childcare_str == "225,000 GNF/mois" ~ "**225 000** GNF/mois",
@@ -63,23 +63,35 @@ choices_df <- fs::path(data_dir, "DCE_Childcare_FR.dta") |>
     hours = dplyr::case_when(
       hours_str == "Uniquement le matin" ~ "Uniquement **le matin**",
       hours_str == "Uniquement l'après-midi" ~ "Uniquement **l'après-midi**",
-      hours_str == "Journée complète" ~ "**Journée complète**",
+      hours_str == "Matin et après-midi" ~ "**Matin et après-midi**",
       .default = hours_str
     ),
     location = dplyr::case_when(
+      # shorten and add markup
       location_str == "La garderie est loin de chez moi (à plus de 15 minutes)" ~
-        "La garderie **est loin** de chez moi (à plus de 15 minutes)",
+        "**Loin** de chez moi (à plus de 15 minutes)",
       location_str == "La garderie est proche de chez moi (à moins de 15 minutes)" ~
-        "La garderie **est proche** de chez moi (à moins de 15 minutes)",
+        "**Proche** de chez moi (à moins de 15 minutes)",
+      # shorten only
+      location_str == "La garderie **est loin** de chez moi (à plus de 15 minutes)" ~
+        "**Loin** de chez moi (à plus de 15 minutes)",
+      location_str == "La garderie **est loin** de chez moi (à plus de 15 minutes" ~
+        "**Loin** de chez moi (à plus de 15 minutes)",
+      location_str == "La garderie **est proche** de chez moi (à plus de 15 minutes" ~
+        "**Proche** de chez moi (à plus de 15 minutes)",
       .default = location_str
     ),
     quality = dplyr::case_when(
-      quality_str == "L'enfant est avec une personne qui s'occupe de lui dans un environnement sûr" ~
-        "L'enfant est avec une personne qui s'occupe de lui dans un environnement **sûr**",
-      quality_str == "L'enfant est avec une personne qui s'occupe de lui dans un environnement sûr ET stimulant" ~
-        "L'enfant est avec une personne qui s'occupe de lui dans un environnement **sûr ET stimulant**",
-      quality_str == "L'enfant est avec une personne qui s'occupe de lui dans un environnement sûr **ET stimulant**" ~
-        "L'enfant est avec une personne qui s'occupe de lui dans un environnement **sûr ET stimulant**",
+      # shorten
+      quality_str == "La garderie a un personnel **formé** qui proposent des activités stimulantes" ~
+        "Avec un personnel **formé** qui proposent des activités stimulantes",
+      quality_str == "La garderie a un personnel **non-formé**" ~
+        "Avec un personnel **non-formé**",
+      # shorten and add markup
+      quality_str == "La garderie a un personnel formé qui proposent des activités stimulantes" ~
+        "Avec un personnel **formé** qui proposent des activités stimulantes",
+      quality_str == "La garderie a un personnel non-formé" ~
+        "Avec un personnel **non-formé**",
       .default = quality_str
     )
   )
