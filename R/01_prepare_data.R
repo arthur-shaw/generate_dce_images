@@ -15,14 +15,10 @@ prepare_data <- function(
   hours_text,
   location_text,
   quality_text,
-  perceptions_text,
-  food_text,
-  cost_icon = "money-bill-1-wave",
-  hours_icon = "clock",
-  location_icon = "location-dot",
-  quality_icon = "clipboard-check",
-  perceptions_icon = "scale-unbalanced",
-  food_icon = "utensils"
+  cost_icon = "Cost.png",
+  hours_icon = "Time.png",
+  location_icon = "Location.png",
+  quality_icon = "Quality.png"
 ) {
 
   choice_table_df <- df |>
@@ -36,11 +32,11 @@ prepare_data <- function(
     # |           |          |          |
     dplyr::select(
         alt,
-        childcare, hours, location, quality, socialnorms, food
+        cost, hours, location, quality
     ) |>
     tidyr::pivot_longer(
       cols = c(
-        childcare, hours, location, quality, socialnorms, food
+        cost, hours, location, quality
       ),
       names_to = "attribute",
       values_to = "value"
@@ -60,12 +56,10 @@ prepare_data <- function(
     # adjust the text of the attributes column
     dplyr::mutate(
       attribute = dplyr::case_when(
-        attribute == "childcare" ~ cost_text,
+        attribute == "cost" ~ cost_text,
         attribute == "hours" ~ hours_text,
         attribute == "location" ~ location_text,
         attribute == "quality" ~ quality_text,
-        attribute == "socialnorms" ~ perceptions_text,
-        attribute == "food" ~ food_text,
         .default = ""
       )
     ) |>
@@ -100,8 +94,6 @@ prepare_data <- function(
         attribute == hours_text ~ hours_icon,
         attribute == location_text ~ location_icon,
         attribute == quality_text ~ quality_icon,
-        attribute == perceptions_text ~ perceptions_icon,
-        attribute == food_text ~ food_icon,
         .default = ""
       ),
       .after = attribute

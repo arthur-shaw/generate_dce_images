@@ -71,20 +71,6 @@ choices_df <- fs::path(data_dir, "DCE_Childcare_FR.dta") |>
       quality_str == "L'enfant est avec une personne qui s'occupe de lui dans un environnement sûr **ET stimulant**" ~
         "L'enfant est avec une personne qui s'occupe de lui dans un environnement **sûr ET stimulant**",
       .default = quality_str
-    ),
-    socialnorms = dplyr::case_when(
-      socialnorms_str == "Peu de gens que je connais penseraient que je suis un mauvais parent parce que j'envoie mon enfant à la garderie" ~
-        "**Peu de gens** que je connais penseraient que je suis un mauvais parent parce que j'envoie mon enfant à la garderie",
-      socialnorms_str == "La plupart des gens que je connais penseraient que je suis un mauvais parent si j'envoie mon enfant à la garderie" ~
-        "**La plupart des gens** que je connais penseraient que je suis un mauvais parent si j'envoie mon enfant à la garderie",
-      .default = socialnorms_str
-    ),
-    food = dplyr::case_when(
-      food_str == "La garderie n'offre pas de nourriture à l'enfant" ~
-        "La garderie **n'offre pas** de nourriture à l'enfant",
-      food_str == "La garderie offre de la nourriture à l'enfant" ~
-        "La garderie **offre** de la nourriture à l'enfant",
-      .default = food_str
     )
   )
 
@@ -106,9 +92,7 @@ purrr::walk(
       cost_text = "Coûts des services de garderie",
       hours_text = "Nombre d'heures de service disponibles",
       location_text = "Emplacement",
-      quality_text = "Qualité",
-      perceptions_text = "Perceptions",
-      food_text = "Nourriture"
+      quality_text = "Qualité"
     ) |>
     # then, compose a {gt} table and save an image of it
     create_image(
