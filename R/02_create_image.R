@@ -129,7 +129,8 @@ create_image <- function(
     # but choice columns practically (since all other column labels are empty)
     gt::tab_options(
       column_labels.border.top.color = "white",
-      column_labels.font.weight = "bold"
+      column_labels.font.weight = "bold",
+      table.font.size = 18
     )
 
   # name the file as `image_` plus a 3-digit left-hand zero-padded number
