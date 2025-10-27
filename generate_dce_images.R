@@ -70,6 +70,8 @@ choices_df <- fs::path(data_dir, "DCE_Childcare_FR.dta") |>
       # shorten and add markup
       location_str == "La garderie est loin de chez moi (à plus de 15 minutes)" ~
         "**Loin** de chez moi (à plus de 15 minutes)",
+      location_str == "La garderie est proche de chez moi (à moins de 15 minutes" ~
+        "**Proche** de chez moi (à moins de 15 minutes)",
       location_str == "La garderie est proche de chez moi (à moins de 15 minutes)" ~
         "**Proche** de chez moi (à moins de 15 minutes)",
       # shorten only
@@ -77,8 +79,10 @@ choices_df <- fs::path(data_dir, "DCE_Childcare_FR.dta") |>
         "**Loin** de chez moi (à plus de 15 minutes)",
       location_str == "La garderie **est loin** de chez moi (à plus de 15 minutes" ~
         "**Loin** de chez moi (à plus de 15 minutes)",
-      location_str == "La garderie **est proche** de chez moi (à plus de 15 minutes" ~
-        "**Proche** de chez moi (à plus de 15 minutes)",
+      location_str == "La garderie **est proche** de chez moi (à moins de 15 minutes)" ~
+        "**Proche** de chez moi (à moins de 15 minutes)",
+      location_str == "La garderie **est proche** de chez moi (à moins de 15 minutes" ~
+        "**Proche** de chez moi (à moins de 15 minutes)",
       .default = location_str
     ),
     quality = dplyr::case_when(
@@ -89,7 +93,7 @@ choices_df <- fs::path(data_dir, "DCE_Childcare_FR.dta") |>
         "Avec un personnel **non-formé**",
       # shorten and add markup
       quality_str == "La garderie a un personnel formé qui proposent des activités stimulantes" ~
-        "Avec un personnel **formé** qui proposent des activités stimulantes",
+        "Avec un personnel **formé** qui **proposent des activités stimulantes**",
       quality_str == "La garderie a un personnel non-formé" ~
         "Avec un personnel **non-formé**",
       .default = quality_str
