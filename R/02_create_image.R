@@ -65,21 +65,24 @@ create_image <- function(
       ),
       icon = ""
     ) |>
+    # make the text in the attribute column bold
+    gt::tab_style(
+      locations = gt::cells_body(columns = attribute),
+      style = gt::cell_text(weight = "bolder")
+    ) |>
     # set the background color cells in the table
-    # row labels
     gt::tab_style(
-      style = gt::cell_fill(color = "#dae2f3"),
-      locations = gt::cells_body(columns = c(attribute, icon))
+      style = list(
+        gt::cell_fill(color = "#156082"),
+        gt::cell_text(color = "white")
+      ),
+      locations = gt::cells_column_labels()
     ) |>
-    # choice column labels, except for the attribute and icon columnns
-    gt::tab_style(
-      style = gt::cell_fill(color = "#dae2f3"),
-      locations = gt::cells_column_labels(columns = -c(attribute, icon))
-    ) |>
-    # table body
-    gt::tab_style(
-      style = gt::cell_fill(color = "#f8f8f8"),
-      locations = gt::cells_body(columns = -c(attribute, icon))
+    # row stripes
+    gt::opt_row_striping(row_striping = TRUE) |>
+    gt::tab_options(
+      table.background.color = "#e7eaed",
+      row.striping.background_color = "#ccd2d8"
     ) |>
     # adjust the cell borders, color and size
     gt::tab_style(
