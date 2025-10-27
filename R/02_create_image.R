@@ -58,9 +58,11 @@ create_image <- function(
         )
       }
     ) |>
-    # remove the attribute column label
+    # "merge" the icon and attribute column labels
     gt::cols_label(
-      attribute = "",
+      attribute = gt::html(
+        "<div style='text-align:center;' colspan='2'>Attribute</div>"
+      ),
       icon = ""
     ) |>
     # set the background color cells in the table
