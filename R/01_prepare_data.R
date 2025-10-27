@@ -96,7 +96,7 @@ prepare_data <- function(
         attribute == quality_text ~ quality_icon,
         .default = ""
       ),
-      .after = attribute
+      .before = 1
     )
 
   return(choice_table_df)
