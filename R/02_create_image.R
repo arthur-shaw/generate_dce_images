@@ -133,7 +133,7 @@ create_image <- function(
     gt::tab_options(
       column_labels.border.top.color = "white",
       column_labels.font.weight = "bold",
-      table.font.size = 18
+      table.font.size = 25
     )
 
   # name the file as `image_` plus a 3-digit left-hand zero-padded number
