@@ -115,8 +115,18 @@ create_image <- function(
         columns = c(attribute, icon)
       )
     ) |>
-    # increase the width of the icon column to give icons right padding
-    gt::cols_width(icon ~ gt::px(50)) |>
+    # set the column widths for adequate space and consistent look
+    gt::cols_width(
+      icon ~ gt::px(170),
+      attribute ~ gt::px(180),
+      choice_A ~ gt::px(172),
+      choice_B ~ gt::px(172)
+    ) |>
+    # make choice columns center-aligned
+    gt::cols_align(
+      align = "center",
+      columns = c(choice_A, choice_B)
+    ) |>
     # specify the column labels for the choices
     gt::cols_label(
       choice_A = option_A_text,
