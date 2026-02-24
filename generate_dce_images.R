@@ -138,6 +138,7 @@ purrr::walk(
       choice_num = .x,
       option_A_text = "Option A",
       option_B_text = "Option B",
+      lang = "ar",
       output_dir = image_dir
     ),
   .progress = TRUE

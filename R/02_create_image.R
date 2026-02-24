@@ -4,6 +4,9 @@
 #' @param choice_num Numeric. Number to include in image name.
 #' @param option_A_text Character. Text to show in choice A column label.
 #' @param option_B_text Character. Text to show in choice B column label.
+#' @param lang Character. Two-character ISO 639 language code.
+#' Find values here:
+#' https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes.
 #' @param output_dir Character. Path to directory where images should be saved.
 #'
 #' @importFrom gt text_transform cells_body cols_label tab_style cell_fill
@@ -20,8 +23,37 @@ create_image <- function(
   choice_num,
   option_A_text = "Option A",
   option_B_text = "Option B",
+  lang,
   output_dir
 ) {
+
+  # define the set of right-to-left (RTL) languages
+  rtl_langs <- c(
+    "ar", # Arabic
+    "he", # Hebrew
+    "fa", # Farsi/Persian
+    "ur", # Urdu
+    "ku", # Kurdish
+    # Aramaic
+    "az", # Azeri - but has LTR writing system too
+    "dv", # Dhivehi
+    "ff" # Fula
+    # Rohingya
+    # Syriac
+    # N'Ko
+  )
+
+  # for RTL languages
+  # invert the column order
+  # so that the table's contents are in RTL reading order
+  if (lang %in% rtl_langs) {
+
+    df <- df |>
+      dplyr::select(
+        choice_B, choice_A, attribute, icon
+      )
+
+  }
 
   # compose a table
   choices_table <- df |>
