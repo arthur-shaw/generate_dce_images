@@ -4,6 +4,7 @@
 #' @param choice_num Numeric. Number to include in image name.
 #' @param option_A_text Character. Text to show in choice A column label.
 #' @param option_B_text Character. Text to show in choice B column label.
+#' @param attribute_text Character. Text to show as attribute column label.
 #' @param lang Character. Two-character ISO 639 language code.
 #' Find values here:
 #' https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes.
@@ -23,6 +24,7 @@ create_image <- function(
   choice_num,
   option_A_text = "Option A",
   option_B_text = "Option B",
+  attribute_text = "Attribute",
   lang,
   output_dir
 ) {
@@ -93,7 +95,9 @@ create_image <- function(
     # "merge" the icon and attribute column labels
     gt::cols_label(
       attribute = gt::html(
-        "<div style='text-align:center;' colspan='2'>Attribute</div>"
+        glue::glue(
+          "<div style='text-align:center;' colspan='2'>{attribute_text}</div>"
+        )
       ),
       icon = ""
     ) |>
