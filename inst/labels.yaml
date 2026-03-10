@@ -1,0 +1,85 @@
+# labels are structured as follows:
+# first, the table stub and column labels (`tbl_labels`)
+# then, the table contents (`tbl_content`)
+
+# indexed by language
+tbl_labels:
+  cost:
+    en: "Childcare services costs"
+    fr: "Coûts des services de garderie"
+    ar: "تكلفة خدمات الحدائق"
+  hours:
+    en: "Number of available service hours"
+    fr: "Nombre d'heures de service disponibles"
+    ar: "عدد ساعات الخدمة المتاحة"
+  location:
+    en: "Location"
+    fr: "Emplacement"
+    ar: "الموقع"
+  quality:
+    en: "Quality"
+    fr: "Qualité"
+    ar: "الجودة"
+  attribute:
+    fr: "Attribut"
+    ar: "يصف"
+  option_a:
+    en: "Option A"
+    fr: "Option A"
+    ar: "الخيار أ"
+  option_b:
+    en: "Option B"
+    fr: "Option B"
+    ar: "الخيار ب"
+
+# indexed by country
+tbl_content:
+  cost:
+    gn:
+      fr:
+        lvl_0: "**0** GNF/mois"
+        lvl_1: "**75 000** GNF/mois"
+        lvl_2: "**150 000** GNF/mois"
+        lvl_3: "**225 000** GNF/mois"
+        lvl_4: "**300 000** GNF/mois"
+        lvl_5: "**375 000** GNF/mois"
+    ma:
+      ar:
+        lvl_0: "**0** درهم / شهر"
+        lvl_1: "**150** درهم/شهر"
+        lvl_2: "**400** درهم/شهر"
+        lvl_3: "**750** درهم /شهر"
+        lvl_4: "**1250** درهم/شهر"
+        lvl_5: "**3000** درهم/شهر"
+      fr:
+        lvl_0: "**0** MAD / mois"
+        lvl_1: "**150** MAD/mois"
+        lvl_2: "**400** MAD/mois"
+        lvl_3: "**750** MAD /mois"
+        lvl_4: "**1250** MAD/mois"
+        lvl_5: "**3000** MAD/mois"
+  # indexed by language
+  hours:
+    fr:
+      only_morning: "Uniquement **le matin**"
+      only_afternoon: "Uniquement **l'après-midi**"
+      all_day: "**Matin et après-midi**"
+    ar:
+      only_morning: "فقط **في الصباح**"
+      only_afternoon: "فقط **بعد الظهر**"
+      all_day: "**الصباح وبعد الظهر**"
+  location:
+    # etc
+    fr:
+      far: "Loin de chez moi (à plus de 15 minutes)"
+      close: "Près de chez moi (à moins de 15 minutes)"
+    ar:
+      far: "** بعيدة** عن منزلي (أكثر من 15 دقيقة)"
+      close: "**قريبة **من منزلي (أقل من 15 دقيقة)"
+  quality:
+    fr:
+      not_trained: "Avec un personnel **non-formé**"
+      trained: "Avec un personnel **formé**"
+    ar:
+      not_trained: " دار الحضانة لديها موظفون **غير مدربين**"
+      trained: "ضم مركز الرعاية النهارية موظفين** مدربين** يقدمون أنشطة محفزة"
