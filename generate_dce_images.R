@@ -9,6 +9,13 @@
 renv::restore(prompt = FALSE)
 
 # ------------------------------------------------------------------------------
+# set project parameters
+# ------------------------------------------------------------------------------
+
+proj_country <- "ma"
+proj_lang <- "ar"
+
+# ------------------------------------------------------------------------------
 # set paths
 # ------------------------------------------------------------------------------
 
@@ -24,6 +31,12 @@ image_dir <- fs::path(proj_dir, "images")
 script_dir |>
 	fs::dir_ls(regexp = "\\.R") |>
 	purrr::walk(.f = ~ source(.x))
+
+# ==============================================================================
+# ingest labels
+# ==============================================================================
+
+lbls <- yaml::read_yaml(file = fs::path("inst", "labels.yaml"))
 
 # ==============================================================================
 # ingest choice data
@@ -76,18 +89,46 @@ purrr::walk(
     # first, extract data for a choice and reshape to the table format
     prepare_data(
       choice_num = .x,
-      cost_text = "تكلفة خدمات الحدائق",
-      hours_text = "عدد ساعات الخدمة المتاحة",
-      location_text = "الموقع",
-      quality_text = "الجودة"
+      cost_text = get_tbl_lbl(
+        labels = lbls,
+        attribute = "cost",
+        lang = proj_lang
+      ),
+      hours_text = get_tbl_lbl(
+        labels = lbls,
+        attribute = "hours",
+        lang = proj_lang
+      ),
+      location_text = get_tbl_lbl(
+        labels = lbls,
+        attribute = "location",
+        lang = proj_lang
+      ),
+      quality_text = get_tbl_lbl(
+        labels = lbls,
+        attribute = "quality",
+        lang = proj_lang
+      )
     ) |>
     # then, compose a {gt} table and save an image of it
     create_image(
       choice_num = .x,
-      option_A_text = "الخيار أ",
-      option_B_text = "الخيار ب",
-      attribute_text = "يصف",
-      lang = "ar",
+      option_A_text = get_tbl_lbl(
+        labels = lbls,
+        attribute = "option_a",
+        lang = proj_lang
+      ),
+      option_B_text = get_tbl_lbl(
+        labels = lbls,
+        attribute = "option_b",
+        lang = proj_lang
+      ),
+      attribute_text = get_tbl_lbl(
+        labels = lbls,
+        attribute = "attribute",
+        lang = proj_lang
+      ),
+      lang = proj_lang,
       output_dir = image_dir
     ),
   .progress = TRUE
