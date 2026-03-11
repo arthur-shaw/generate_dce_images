@@ -5,6 +5,7 @@
 #' @param option_A_text Character. Text to show in choice A column label.
 #' @param option_B_text Character. Text to show in choice B column label.
 #' @param attribute_text Character. Text to show as attribute column label.
+#' @param country Character. ISO 3166-1 alpha-2 country codes.
 #' @param lang Character. Two-character ISO 639 language code.
 #' Find values here:
 #' https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes.
@@ -25,6 +26,7 @@ create_image <- function(
   option_A_text = "Option A",
   option_B_text = "Option B",
   attribute_text = "Attribute",
+  country,
   lang,
   output_dir
 ) {
@@ -183,8 +185,12 @@ create_image <- function(
     )
 
   # name the file as `image_` plus a 3-digit left-hand zero-padded number
+  # plus a two-character language suffix `_{lang}`
+  # directory is the 2-character country code
   image_file_path <- fs::path(
     output_dir,
+    country,
+    lang,
     paste0(
       "image_",
       stringr::str_pad(
@@ -193,6 +199,7 @@ create_image <- function(
         side = "left",
         pad = "0"
       ),
+      "_", lang,
       ".png"
     )
   )

@@ -75,6 +75,14 @@ choices_df <- fs::path(data_dir, "DCE_Childcare_GS.dta") |>
   )
 
 # ==============================================================================
+# create output directory, if it doesn't already exist
+# ==============================================================================
+
+fs::dir_create(
+  fs::path(image_dir, proj_country, proj_lang)
+)
+
+# ==============================================================================
 # execute image production pipeline iteratively for each choice
 # ==============================================================================
 
@@ -128,6 +136,7 @@ purrr::walk(
         attribute = "attribute",
         lang = proj_lang
       ),
+      country = proj_country,
       lang = proj_lang,
       output_dir = image_dir
     ),
