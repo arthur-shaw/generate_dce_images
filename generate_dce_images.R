@@ -29,8 +29,19 @@ script_dir |>
 # ingest choice data
 # ==============================================================================
 
-choices_df <- fs::path(data_dir, "DCE_Childcare_MA_AR.dta") |>
+choices_df <- fs::path(data_dir, "DCE_Childcare_GS.dta") |>
 	haven::read_dta() |>
+  # rename to match name of key in labels
+  dplyr::rename(cost = childcare) |>
+	# remove string values
+  # these will be replaced with language specific versions
+  dplyr::select(-dplyr::ends_with("_str")) |>
+  # create new string variables
+  create_str_lbls(
+    lbls = lbls,
+    country = proj_country,
+    lang = proj_lang
+  ) |>
   # keep only those data needed
   # among other reasons to avoid name collision with desired variables
   dplyr::select(
@@ -39,75 +50,12 @@ choices_df <- fs::path(data_dir, "DCE_Childcare_MA_AR.dta") |>
     # choice A (1) or B (2)
     alt,
     # string attribute levels
-    childcare_str, hours_str, location_str, quality_str
+    cost = cost_str,
+    hours = hours_str,
+    location =location_str,
+    quality = quality_str
   ) |>
-  # if `**` is missing, provide it
-  # otherwise, keep text the same
-	# dplyr::mutate(
-  #   cost = dplyr::case_when(
-  #     childcare_str == "0 GNF/mois" ~ "**0** GNF/mois",
-  #     childcare_str == "75,000 GNF/mois" ~ "**75 000** GNF/mois",
-  #     childcare_str == "150,000 GNF/mois" ~ "**150 000** GNF/mois",
-  #     childcare_str == "225,000 GNF/mois" ~ "**225 000** GNF/mois",
-  #     childcare_str == "300,000 GNF/mois" ~ "**300 000** GNF/mois",
-  #     childcare_str == "375,000 GNF/mois" ~ "**375 000** GNF/mois",
-  #     .default = childcare_str
-  #   ),
-  #   # replace any remaining commas with a space as a French thousands separator
-  #   # in case the rules above failed to address any separators
-  #   cost = dplyr::if_else(
-  #     condition = grepl(x = cost, pattern = ",", fixed = TRUE),
-  #     true = sub(x = cost, pattern = ",", replacement = " ", fixed = TRUE),
-  #     false = cost
-  #   ),
-  #   hours = dplyr::case_when(
-  #     hours_str == "Uniquement le matin" ~ "Uniquement **le matin**",
-  #     hours_str == "Uniquement l'après-midi" ~ "Uniquement **l'après-midi**",
-  #     hours_str == "Matin et après-midi" ~ "**Matin et après-midi**",
-  #     .default = hours_str
-  #   ),
-  #   location = dplyr::case_when(
-  #     # shorten and add markup
-  #     location_str == "La garderie est loin de chez moi (à plus de 15 minutes)" ~
-  #       "**Loin** de chez moi (à plus de 15 minutes)",
-  #     location_str == "La garderie est proche de chez moi (à moins de 15 minutes" ~
-  #       "**Proche** de chez moi (à moins de 15 minutes)",
-  #     location_str == "La garderie est proche de chez moi (à moins de 15 minutes)" ~
-  #       "**Proche** de chez moi (à moins de 15 minutes)",
-  #     # shorten only
-  #     location_str == "La garderie **est loin** de chez moi (à plus de 15 minutes)" ~
-  #       "**Loin** de chez moi (à plus de 15 minutes)",
-  #     location_str == "La garderie **est loin** de chez moi (à plus de 15 minutes" ~
-  #       "**Loin** de chez moi (à plus de 15 minutes)",
-  #     location_str == "La garderie **est proche** de chez moi (à moins de 15 minutes)" ~
-  #       "**Proche** de chez moi (à moins de 15 minutes)",
-  #     location_str == "La garderie **est proche** de chez moi (à moins de 15 minutes" ~
-  #       "**Proche** de chez moi (à moins de 15 minutes)",
-  #     .default = location_str
-  #   ),
-  #   quality = dplyr::case_when(
-  #     # shorten
-  #     quality_str == "La garderie a un personnel **formé** qui proposent des activités stimulantes" ~
-  #       "Avec un personnel **formé** qui proposent des activités stimulantes",
-  #     quality_str == "La garderie a un personnel **non-formé**" ~
-  #       "Avec un personnel **non-formé**",
-  #     # shorten and add markup
-  #     quality_str == "La garderie a un personnel formé qui proposent des activités stimulantes" ~
-  #       "Avec un personnel **formé** qui **proposent des activités stimulantes**",
-  #     quality_str == "La garderie a un personnel non-formé" ~
-  #       "Avec un personnel **non-formé**",
-  #     .default = quality_str
-  #   )
-  # ) |>
-	# keep only the desired columns
-  dplyr::select(
-    # image number
-    image,
-    # choice A (1) or B (2)
-    alt,
-    # string attribute levels
-    cost = childcare_str, hours = hours_str, location = location_str, quality = quality_str
-  ) |>
+  # check that all labels contain `*`
   assertr::assert(
     predicate = \(x) grepl(x = x, pattern = "*"),
     cost, hours, location, quality
