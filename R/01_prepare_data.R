@@ -102,14 +102,3 @@ prepare_data <- function(
   return(choice_table_df)
 
 }
-
-# b <- prepare_data(
-#   df = choices_df,
-#   choice_num = 1,
-#   cost_text = "Childcare services cost",
-#   hours_text = "Number of available services hours",
-#   location_text = "Location",
-#   quality_text = "Quality",
-#   perceptions_text = "Perceptions",
-#   food_text = "Food"
-# )
