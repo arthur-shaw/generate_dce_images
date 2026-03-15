@@ -184,7 +184,7 @@ create_image <- function(
       table.font.size = 25
     )
 
-  # name the file as `image_` plus a 3-digit left-hand zero-padded number
+  # name the file as `image_` plus a 2-digit left-hand zero-padded number
   # plus a two-character language suffix `_{lang}`
   # directory is the 2-character country code
   image_file_path <- fs::path(
@@ -195,7 +195,7 @@ create_image <- function(
       "image_",
       stringr::str_pad(
         string = choice_num,
-        width = 3,
+        width = 2,
         side = "left",
         pad = "0"
       ),
