@@ -41,7 +41,8 @@ create_image <- function(
     # Aramaic
     "az", # Azeri - but has LTR writing system too
     "dv", # Dhivehi
-    "ff" # Fula
+    "ff", # Fula
+    "zg" # Tamazight / Amazigh (written with Arabic script)
     # Rohingya
     # Syriac
     # N'Ko
