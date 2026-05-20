@@ -1,0 +1,44 @@
+# Schema for translation template structure
+# Defines stable keys and nesting dimensions for each YAML section
+# Countries and languages are runtime parameters, NOT defined here
+
+tbl_labels:
+  indexed_by: [language]
+  keys:
+    - cost
+    - hours
+    - location
+    - quality
+    - attribute
+    - option_a
+    - option_b
+
+tbl_content:
+  cost:
+    indexed_by: [country, language]
+    keys:
+      - lvl_0
+      - lvl_1
+      - lvl_2
+      - lvl_3
+      - lvl_4
+      - lvl_5
+  
+  hours:
+    indexed_by: [language]
+    keys:
+      - only_morning
+      - only_afternoon
+      - all_day
+  
+  location:
+    indexed_by: [language]
+    keys:
+      - far
+      - close
+  
+  quality:
+    indexed_by: [language]
+    keys:
+      - not_trained
+      - trained
