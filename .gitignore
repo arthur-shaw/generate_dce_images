@@ -1,3 +1,9 @@
 # do not track scratch/dev folders
 _scratch/*
 dev/*
+
+# translation templates
+template_*.xlsx
+
+# YAML with new translations to be added
+inst/labels_new_*.yaml
