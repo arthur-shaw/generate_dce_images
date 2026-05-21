@@ -21,6 +21,7 @@ tbl_labels:
     fr: "Qualité"
     ar: "الجودة"
   attribute:
+    en: "Attribute"
     fr: "Attribut"
     ar: "يصف"
   option_a:
@@ -60,6 +61,10 @@ tbl_content:
         lvl_5: "**3000** MAD/mois"
   # indexed by language
   hours:
+    en:
+      only_morning: "Only **morning**"
+      only_afternoon: "Only **afternoon**"
+      all_day: "**Morning and afternoon**"
     fr:
       only_morning: "Uniquement **le matin**"
       only_afternoon: "Uniquement **l'après-midi**"
@@ -69,7 +74,9 @@ tbl_content:
       only_afternoon: "فقط **بعد الظهر**"
       all_day: "**الصباح وبعد الظهر**"
   location:
-    # etc
+    en:
+      far: "**Far** from home (more than 15 minutes)"
+      close: "**Near** home (less than 15 minutes)"
     fr:
       far: "Loin de chez moi (à plus de 15 minutes)"
       close: "Près de chez moi (à moins de 15 minutes)"
@@ -77,6 +84,9 @@ tbl_content:
       far: "** بعيدة** عن منزلي (أكثر من 15 دقيقة)"
       close: "**قريبة **من منزلي (أقل من 15 دقيقة)"
   quality:
+    en:
+      not_trained: "With **untrained** staff"
+      trained: "With **trained** staff"
     fr:
       not_trained: "Avec un personnel **non-formé**"
       trained: "Avec un personnel **formé**"
