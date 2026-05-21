@@ -78,8 +78,8 @@ tbl_content:
       far: "**Far** from home (more than 15 minutes)"
       close: "**Near** home (less than 15 minutes)"
     fr:
-      far: "Loin de chez moi (à plus de 15 minutes)"
-      close: "Près de chez moi (à moins de 15 minutes)"
+      far: "**Loin** de chez moi (à plus de 15 minutes)"
+      close: "**Près** de chez moi (à moins de 15 minutes)"
     ar:
       far: "** بعيدة** عن منزلي (أكثر من 15 دقيقة)"
       close: "**قريبة **من منزلي (أقل من 15 دقيقة)"
