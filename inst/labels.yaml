@@ -33,7 +33,7 @@ tbl_labels:
     fr: "Option B"
     ar: "الخيار ب"
 
-# indexed by country
+# indexed by country and language
 tbl_content:
   cost:
     gn:
