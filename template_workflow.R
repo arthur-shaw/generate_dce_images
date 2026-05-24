@@ -21,12 +21,14 @@ fs::dir_ls(path = "R", regexp = "0[345]_.*\\.R$") |>
 # Modify these variables to generate/validate/export for a different country
 
 # Country: ISO 3166-1 alpha-2 code
-template_country <- "ma"
+# Example: Morocco (`ma`)
+# Example: Ghana (`gh`)
+template_country <- ""
 
 # Languages: ISO 639-1 codes
-# Example: French and Arabic in Morocco
-# Example: English and Twi in Ghana
-template_languages <- c("fr", "ar")
+# Example: French (`fr`) and Arabic (`ar`) in Morocco
+# Example: English (`en`) and Twi in Ghana (`tw`)
+template_languages <- c("")
 
 # ==============================================================================
 # Step 3: Generate template
