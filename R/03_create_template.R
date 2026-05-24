@@ -280,7 +280,15 @@ create_excel_template <- function(
 
         if (attribute == "cost") {
 
-          labels$tbl_content$cost[[country]][[lang]][[key]]
+          # retrieve country-language-level values if they exist
+          lbls <- labels$tbl_content$cost[[country]][[lang]][[key]]
+
+          # if no values found for English
+          # use template values
+          if (lang == "en" & is.null(lbls)) {
+            lbls <- labels$tbl_content$cost[["_template"]][[lang]][[key]]
+          }
+          lbls
 
         } else {
 

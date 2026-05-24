@@ -36,6 +36,14 @@ tbl_labels:
 # indexed by country and language
 tbl_content:
   cost:
+    _template:
+      en:
+        lvl_0: "**0** [CURRENCY]/month"
+        lvl_1: "**[AMOUNT]** [CURRENCY]/month"
+        lvl_2: "**[AMOUNT]** [CURRENCY]/month"
+        lvl_3: "**[AMOUNT]** [CURRENCY]/month"
+        lvl_4: "**[AMOUNT]** [CURRENCY]/month"
+        lvl_5: "**[AMOUNT]** [CURRENCY]/month"
     gn:
       fr:
         lvl_0: "**0** GNF/mois"
