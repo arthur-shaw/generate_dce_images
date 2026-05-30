@@ -10,42 +10,56 @@ tbl_labels:
     ar: "تكلفة خدمات الحدائق"
     hi: ल देखभाल सेवाओं की लागत
     ta: குழந்தை பராமரிப்பு சேவைகளின் செலவு
+    fj: Na I sau ni veiqaravi vei ira na lalai
+    hf: Childcare sewa keh Kitna lage
   hours:
     en: "Number of available service hours"
     fr: "Nombre d'heures de service disponibles"
     ar: "عدد ساعات الخدمة المتاحة"
     hi: णवत्ता
     ta: தரம்
+    fj: Na I wiliwili ni auwa e tiko ena veigauna ni veiqaravi
+    hf: Kitna ghanta keh liye rahe
   location:
     en: "Location"
     fr: "Emplacement"
     ar: "الموقع"
     hi: स्थान
     ta: இடம்
+    fj: Na vanua
+    hf: Kon jagga
   quality:
     en: "Quality"
     fr: "Qualité"
     ar: "الجودة"
     hi: णवत्ता
     ta: தரம்
+    fj: Kena vinaka
+    hf: Kitna acha hai
   attribute:
     en: "Attribute"
     fr: "Attribut"
     ar: "يصف"
     hi: विशेषता
     ta: பண்பு
+    fj: Attribute
+    hf: Attribute
   option_a:
     en: "Option A"
     fr: "Option A"
     ar: "الخيار أ"
     hi: विकल्प A
     ta: விருப்பம் A
+    fj: Option A
+    hf: Option A
   option_b:
     en: "Option B"
     fr: "Option B"
     ar: "الخيار ب"
     hi: विकल्प B
     ta: விருப்பம் B
+    fj: Option B
+    hf: Option B
 
 # indexed by country and language
 tbl_content:
@@ -96,6 +110,28 @@ tbl_content:
         lvl_3: '**[AMOUNT]** [CURRENCY]/மாதம்'
         lvl_4: '**[AMOUNT]** [CURRENCY]/மாதம்'
         lvl_5: '**[AMOUNT]** [CURRENCY]/மாதம்'
+    fj:
+      en:
+        lvl_0: '**0** FJD/weekly'
+        lvl_1: '**50** FJD/weekly'
+        lvl_2: '**100** FJD/weekly'
+        lvl_3: '**150** FJD/weekly'
+        lvl_4: '**200** FJD/weekly'
+        lvl_5: '**250** FJD/weekly'
+      fj:
+        lvl_0: '**0** FJD/veimacawa'
+        lvl_1: '**50** FJD/veimacawa'
+        lvl_2: '**100** FJD/veimacawa'
+        lvl_3: '**150** FJD/veimacawa'
+        lvl_4: '**200** FJD/veimacawa'
+        lvl_5: '**250** FJD/veimacawa'
+      hf:
+        lvl_0: '**0** FJD/hafta keh'
+        lvl_1: '**50** FJD/hafta keh'
+        lvl_2: '**100** FJD/hafta keh'
+        lvl_3: '**150** FJD/hafta keh'
+        lvl_4: '**200** FJD/hafta keh'
+        lvl_5: '**250** FJD/hafta keh'
   # indexed by language
   hours:
     en:
@@ -118,6 +154,14 @@ tbl_content:
       only_morning: '**காலை** மட்டும்'
       only_afternoon: '**மதியம்** மட்டும்'
       all_day: '**காலை மற்றும மதியம்**'
+    fj:
+      only_morning: E na **Mataka lailai**
+      only_afternoon: E na **Yakavi**
+      all_day: E na **Mataka kei na yakavi**
+    hf:
+      only_morning: Khali **sabere** keh time
+      only_afternoon: Khali **sanja** keh time
+      all_day: '**Sabere aur sanja** keh'
   location:
     en:
       far: "**Far** from home (more than 15 minutes)"
@@ -134,6 +178,14 @@ tbl_content:
     ta:
       far: வீட்டிலிருந்து **தூரம்** (15 நிமிடங்களுக்கு மேலே)**
       close: வீட்டுக்கு **அருகில்** (15 நிமிடங்களுக்கு குறைவாக)
+    fj:
+      far: E **yawa** toka mai vale (sivia na tinikalima na miniti kena yawa)
+      close: E **voleka** toka ga e vale (lailai mai na tinikalima na miniti kena
+        yawa)
+    hf:
+      far: Ghar se **door** (pandra minute se jada)
+      close: Ghar keh **nazdik** (pandra minute se kamti)
+
   quality:
     en:
       not_trained: "With **untrained** staff"
@@ -150,3 +202,10 @@ tbl_content:
     ta:
       not_trained: '**பயிற்சி பெறாத** பணியாளர்களுடன்'
       trained: '**பயிற்சி பெற்ற** பணியாளர்களுடன்'
+    fj:
+      not_trained: Vata kei ira na **dauniveiqaravi era sega ni vulica** na kena cakacaka
+      trained: Vata kei ira na **dauniveiqaravi era vulica** na kena cakacaka kara
+        dau bulia na kena vei walewale eso
+    hf:
+      not_trained: '**Untrained** caregivers se'
+      trained: Koi ek **trained la care giver** jon active rhake ulog keh
