@@ -8,30 +8,44 @@ tbl_labels:
     en: "Childcare services costs"
     fr: "Coûts des services de garderie"
     ar: "تكلفة خدمات الحدائق"
+    hi: ल देखभाल सेवाओं की लागत
+    ta: குழந்தை பராமரிப்பு சேவைகளின் செலவு
   hours:
     en: "Number of available service hours"
     fr: "Nombre d'heures de service disponibles"
     ar: "عدد ساعات الخدمة المتاحة"
+    hi: णवत्ता
+    ta: தரம்
   location:
     en: "Location"
     fr: "Emplacement"
     ar: "الموقع"
+    hi: स्थान
+    ta: இடம்
   quality:
     en: "Quality"
     fr: "Qualité"
     ar: "الجودة"
+    hi: णवत्ता
+    ta: தரம்
   attribute:
     en: "Attribute"
     fr: "Attribut"
     ar: "يصف"
+    hi: विशेषता
+    ta: பண்பு
   option_a:
     en: "Option A"
     fr: "Option A"
     ar: "الخيار أ"
+    hi: विकल्प A
+    ta: விருப்பம் A
   option_b:
     en: "Option B"
     fr: "Option B"
     ar: "الخيار ب"
+    hi: विकल्प B
+    ta: விருப்பம் B
 
 # indexed by country and language
 tbl_content:
@@ -67,6 +81,21 @@ tbl_content:
         lvl_3: "**750** MAD /mois"
         lvl_4: "**1250** MAD/mois"
         lvl_5: "**3000** MAD/mois"
+    in:
+      hi:
+        lvl_0: '**0** [CURRENCY]/माह'
+        lvl_1: '**[AMOUNT]** [CURRENCY]/माह'
+        lvl_2: '**[AMOUNT]** [CURRENCY]/माह'
+        lvl_3: '**[AMOUNT]** [CURRENCY]/माह'
+        lvl_4: '**[AMOUNT]** [CURRENCY]/माह'
+        lvl_5: '**[AMOUNT]** [CURRENCY]/माह'
+      ta:
+        lvl_0: '**0** [CURRENCY]/மாதம்'
+        lvl_1: '**[AMOUNT]** [CURRENCY]/மாதம்'
+        lvl_2: '**[AMOUNT]** [CURRENCY]/மாதம்'
+        lvl_3: '**[AMOUNT]** [CURRENCY]/மாதம்'
+        lvl_4: '**[AMOUNT]** [CURRENCY]/மாதம்'
+        lvl_5: '**[AMOUNT]** [CURRENCY]/மாதம்'
   # indexed by language
   hours:
     en:
@@ -81,6 +110,14 @@ tbl_content:
       only_morning: "فقط **في الصباح**"
       only_afternoon: "فقط **بعد الظهر**"
       all_day: "**الصباح وبعد الظهر**"
+    hi:
+      only_morning: केवल **सुबह**
+      only_afternoon: केवल **दोपहर**
+      all_day: '**सुबह और दोपहर**'
+    ta:
+      only_morning: '**காலை** மட்டும்'
+      only_afternoon: '**மதியம்** மட்டும்'
+      all_day: '**காலை மற்றும மதியம்**'
   location:
     en:
       far: "**Far** from home (more than 15 minutes)"
@@ -91,6 +128,12 @@ tbl_content:
     ar:
       far: "** بعيدة** عن منزلي (أكثر من 15 دقيقة)"
       close: "**قريبة **من منزلي (أقل من 15 دقيقة)"
+    hi:
+      far: घर से **दूर** (15 मिनट से अधिक)
+      close: घर के **पास** (15 मिनट के भीतर)
+    ta:
+      far: வீட்டிலிருந்து **தூரம்** (15 நிமிடங்களுக்கு மேலே)**
+      close: வீட்டுக்கு **அருகில்** (15 நிமிடங்களுக்கு குறைவாக)
   quality:
     en:
       not_trained: "With **untrained** staff"
@@ -101,3 +144,9 @@ tbl_content:
     ar:
       not_trained: " دار الحضانة لديها موظفون **غير مدربين**"
       trained: "ضم مركز الرعاية النهارية موظفين** مدربين** يقدمون أنشطة محفزة"
+    hi:
+      not_trained: '**अप्रशिक्षित** कर्मचारियों के साथ'
+      trained: '**प्रशिक्षित** कर्मचारी के साथ'
+    ta:
+      not_trained: '**பயிற்சி பெறாத** பணியாளர்களுடன்'
+      trained: '**பயிற்சி பெற்ற** பணியாளர்களுடன்'
