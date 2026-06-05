@@ -110,6 +110,13 @@ tbl_content:
         lvl_3: '**1500** INR / மாதம்'
         lvl_4: '**2000** INR / மாதம்'
         lvl_5: '**2500** INR / மாதம்'
+      en:
+        lvl_0: '**0** INR / month'
+        lvl_1: '**500** INR  / month'
+        lvl_2: '**1000** INR / month'
+        lvl_3: '**1500** INR / month'
+        lvl_4: '**2000** INR / month'
+        lvl_5: '**2500** INR / month'
     fj:
       en:
         lvl_0: '**0** FJD / weekly'
