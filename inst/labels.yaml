@@ -97,19 +97,19 @@ tbl_content:
         lvl_5: "**3000** MAD/mois"
     in:
       hi:
-        lvl_0: '**0** [CURRENCY]/माह'
-        lvl_1: '**[AMOUNT]** [CURRENCY]/माह'
-        lvl_2: '**[AMOUNT]** [CURRENCY]/माह'
-        lvl_3: '**[AMOUNT]** [CURRENCY]/माह'
-        lvl_4: '**[AMOUNT]** [CURRENCY]/माह'
-        lvl_5: '**[AMOUNT]** [CURRENCY]/माह'
+        lvl_0: '**0** INR / माह'
+        lvl_1: '**500** INR  / माह'
+        lvl_2: '**1000** INR / माह'
+        lvl_3: '**1500** INR / माह'
+        lvl_4: '**2000** INR / माह'
+        lvl_5: '**2500** INR / माह'
       ta:
-        lvl_0: '**0** [CURRENCY]/மாதம்'
-        lvl_1: '**[AMOUNT]** [CURRENCY]/மாதம்'
-        lvl_2: '**[AMOUNT]** [CURRENCY]/மாதம்'
-        lvl_3: '**[AMOUNT]** [CURRENCY]/மாதம்'
-        lvl_4: '**[AMOUNT]** [CURRENCY]/மாதம்'
-        lvl_5: '**[AMOUNT]** [CURRENCY]/மாதம்'
+        lvl_0: '**0** INR / மாதம்'
+        lvl_1: '**500** INR / மாதம்'
+        lvl_2: '**1000** INR / மாதம்'
+        lvl_3: '**1500** INR / மாதம்'
+        lvl_4: '**2000** INR / மாதம்'
+        lvl_5: '**2500** INR / மாதம்'
     fj:
       en:
         lvl_0: '**0** FJD / weekly'
