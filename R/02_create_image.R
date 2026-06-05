@@ -10,6 +10,18 @@
 #' Find values here:
 #' https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes.
 #' @param output_dir Character. Path to directory where images should be saved.
+#' @param col_width_icon Numeric. Width of the column for the icon,
+#' before it is merged with the attribute column.
+#' @param col_width_attribute Numeric. Width of the attribute label column.
+#' @param col_width_choice Numeric. Width of the choice columns.
+#' Same value is applied to each.
+#' @param cell_padding Numeric. Padding in pixels to add along the horizontal
+#' axis to all cells in the table.
+#' @param image_height Numeric. Height of the image.
+#' This indirectly affects the width / speace within the cell.
+#' @param font_size Numeric.
+#' @param viewport_width Numeric.Viewport width used for capturing
+#' the image of the HTML table in ta headless browser session.
 #'
 #' @importFrom gt text_transform cells_body cols_label tab_style cell_fill
 #' cells_column_labels cell_borders px cols_width cell_text tab_options
@@ -28,7 +40,16 @@ create_image <- function(
   attribute_text = "Attribute",
   country,
   lang,
-  output_dir
+  output_dir,
+  # layout overrides
+  # for the table
+  col_width_icon = 170,
+  col_width_attribute = 180,
+  col_width_choice = 172,
+  cell_padding = 10,
+  image_height = 150,
+  font_size = 25,
+  viewport_width = 720
 ) {
 
   # define the set of right-to-left (RTL) languages
@@ -71,7 +92,7 @@ create_image <- function(
       fn = function(x) {
         gt::local_image(
           filename = fs::path(proj_dir, "assets", x),
-          height = 150
+          height = image_height
         )
       }
     ) |>
@@ -156,10 +177,15 @@ create_image <- function(
     ) |>
     # set the column widths for adequate space and consistent look
     gt::cols_width(
-      icon ~ gt::px(170),
-      attribute ~ gt::px(180),
-      choice_A ~ gt::px(172),
-      choice_B ~ gt::px(172)
+      icon ~ gt::px(col_width_icon),
+      attribute ~ gt::px(col_width_attribute),
+      choice_A ~ gt::px(col_width_choice),
+      choice_B ~ gt::px(col_width_choice)
+    ) |>
+    # adjust horizontal cell padding
+    gt::tab_options(
+      data_row.padding = gt::px(cell_padding),
+      column_labels.padding = gt::px(cell_padding)
     ) |>
     # make choice columns center-aligned
     gt::cols_align(
@@ -182,7 +208,7 @@ create_image <- function(
     gt::tab_options(
       column_labels.border.top.color = "white",
       column_labels.font.weight = "bold",
-      table.font.size = 25
+      table.font.size = font_size 
     )
 
   # name the file as `image_` plus a 2-digit left-hand zero-padded number
@@ -209,7 +235,7 @@ create_image <- function(
   gt::gtsave(
     data = choices_table,
     filename = image_file_path,
-    vwidth = 720,
+    vwidth = viewport_width,
   )
 
   # construct the file path from the perspective of WSL

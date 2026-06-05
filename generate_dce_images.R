@@ -12,8 +12,11 @@ renv::restore(prompt = FALSE)
 # set project parameters
 # ------------------------------------------------------------------------------
 
-proj_country <- "ma"
-proj_lang <- "ar"
+
+# note: to set country-language-specific layout paramters, add to layout.yaml
+# this file contains
+# - default values
+# - optional country-language overrides
 
 # ------------------------------------------------------------------------------
 # set paths
@@ -37,6 +40,16 @@ script_dir |>
 # ==============================================================================
 
 lbls <- yaml::read_yaml(file = fs::path("inst", "labels.yaml"))
+
+# ==============================================================================
+# ingest country-language table/image layout parameters
+# ==============================================================================
+
+layout_params <- get_layout_params(
+  layout = yaml::read_yaml(fs::path("inst", "layout.yaml")),
+  country = proj_country,
+  lang = proj_lang
+)
 
 # ==============================================================================
 # ingest choice data
@@ -138,7 +151,15 @@ purrr::walk(
       ),
       country = proj_country,
       lang = proj_lang,
-      output_dir = image_dir
+      output_dir = image_dir,
+      # layout overrides
+      col_width_icon    = layout_params$col_width_icon,
+      col_width_attribute = layout_params$col_width_attribute,
+      col_width_choice  = layout_params$col_width_choice,
+      cell_padding      = layout_params$cell_padding,
+      image_height      = layout_params$image_height,
+      font_size         = layout_params$font_size,
+      viewport_width    = layout_params$viewport_width
     ),
   .progress = TRUE
 )

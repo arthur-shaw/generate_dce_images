@@ -1,0 +1,19 @@
+defaults:
+  col_width_icon: 170
+  col_width_attribute: 180
+  col_width_choice: 172
+  cell_padding: 10
+  image_height: 150
+  font_size: 25
+  viewport_width: 720
+
+overrides:
+  in:
+    ta:
+      col_width_icon: 150
+      col_width_attribute: 150
+      col_width_choice: 210
+      cell_padding: 6
+      image_height: 125
+      font_size: 18
+      viewport_width: 800
