@@ -28,7 +28,6 @@
 #' choices_table
 #' @importFrom purrr map_chr
 #' @importFrom glue glue
-#' @importFrom fontawesome fa
 #' @importFrom dplyr everything
 #' @importFrom fs path
 #' @importFrom stringr str_pad
@@ -84,9 +83,7 @@ create_image <- function(
   # compose a table
   choices_table <- df |>
     gt::gt() |>
-    # transform icon name into a Font Awesome icon
-    # importantly, iterating over each element of column
-    # so as to return a scalar for that row
+    # ingest the image into the column
     gt::text_transform(
       locations = gt::cells_body(columns = icon),
       fn = function(x) {
