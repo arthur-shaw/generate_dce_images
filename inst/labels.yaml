@@ -16,8 +16,8 @@ tbl_labels:
     en: "Number of available service hours"
     fr: "Nombre d'heures de service disponibles"
     ar: "عدد ساعات الخدمة المتاحة"
-    hi: णवत्ता
-    ta: தரம்
+    hi: उपलब्ध सेवा के घंटे
+    ta: கிடைக்கும் சேவை நேரங்கள்
     fj: Na I wiliwili ni auwa e tiko ena veigauna ni veiqaravi
     hf: Kitna ghanta keh liye rahe
   location:
