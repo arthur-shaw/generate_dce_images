@@ -29,6 +29,7 @@
 #' @importFrom purrr map_chr
 #' @importFrom glue glue
 #' @importFrom dplyr everything
+#' @importFrom rlang expr
 #' @importFrom fs path
 #' @importFrom stringr str_pad
 create_image <- function(
@@ -171,14 +172,28 @@ create_image <- function(
         rows = dplyr::everything(),
         columns = c(attribute, icon)
       )
-    ) |>
+    )
+
+# R 4.5+ changed how formula environments are scoped in `gt::cols_width()`.
+# Function parameters are no longer visible in the formula's evaluation context.
+# Workaround: Use rlang::expr() with !! (unquote) and eval() with explicit
+# envir = environment() to force evaluation in the function's local scope.
+choices_table <- base::eval(
+  rlang::expr(
+    choices_table |>
     # set the column widths for adequate space and consistent look
     gt::cols_width(
-      icon ~ gt::px(col_width_icon),
-      attribute ~ gt::px(col_width_attribute),
-      choice_A ~ gt::px(col_width_choice),
-      choice_B ~ gt::px(col_width_choice)
-    ) |>
+      icon ~ !!gt::px(col_width_icon),
+      attribute ~ !!gt::px(col_width_attribute),
+      choice_A ~ !!gt::px(col_width_choice),
+      choice_B ~ !!gt::px(col_width_choice)
+    )
+
+  ),
+  envir = environment()
+)
+
+choices_table <- choices_table |>
     # adjust horizontal cell padding
     gt::tab_options(
       data_row.padding = gt::px(cell_padding),
