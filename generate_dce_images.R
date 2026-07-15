@@ -7,6 +7,10 @@
 # ------------------------------------------------------------------------------
 
 renv::restore(prompt = FALSE)
+# give `renv`'s static code analysis a reason to consider
+# webshot2 a dependency
+# otherwise, this "Suggests" import of `gt` isn't required in renv
+library(webshot2)
 
 # ------------------------------------------------------------------------------
 # set project parameters
