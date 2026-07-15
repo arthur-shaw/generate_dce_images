@@ -120,25 +120,25 @@ tbl_content:
     fj:
       en:
         lvl_0: '**0** FJD / weekly'
-        lvl_1: '**50** FJD / weekly'
-        lvl_2: '**100** FJD / weekly'
-        lvl_3: '**150** FJD / weekly'
-        lvl_4: '**200** FJD / weekly'
-        lvl_5: '**250** FJD / weekly'
+        lvl_1: '**15** FJD / weekly'
+        lvl_2: '**30** FJD / weekly'
+        lvl_3: '**45** FJD / weekly'
+        lvl_4: '**60** FJD / weekly'
+        lvl_5: '**75** FJD / weekly'
       fj:
         lvl_0: '**0** FJD / veimacawa'
-        lvl_1: '**50** FJD / veimacawa'
-        lvl_2: '**100** FJD / veimacawa'
-        lvl_3: '**150** FJD / veimacawa'
-        lvl_4: '**200** FJD / veimacawa'
-        lvl_5: '**250** FJD / veimacawa'
+        lvl_1: '**15** FJD / veimacawa'
+        lvl_2: '**30** FJD / veimacawa'
+        lvl_3: '**45** FJD / veimacawa'
+        lvl_4: '**60** FJD / veimacawa'
+        lvl_5: '**75** FJD / veimacawa'
       hf:
         lvl_0: '**0** FJD / hafta keh'
-        lvl_1: '**50** FJD / hafta keh'
-        lvl_2: '**100** FJD / hafta keh'
-        lvl_3: '**150** FJD / hafta keh'
-        lvl_4: '**200** FJD / hafta keh'
-        lvl_5: '**250** FJD / hafta keh'
+        lvl_1: '**15** FJD / hafta keh'
+        lvl_2: '**30** FJD / hafta keh'
+        lvl_3: '**45** FJD / hafta keh'
+        lvl_4: '**60** FJD / hafta keh'
+        lvl_5: '**75** FJD / hafta keh'
   # indexed by language
   hours:
     en:
