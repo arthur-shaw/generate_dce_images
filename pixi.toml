@@ -12,6 +12,10 @@ R_LIBS = "$PIXI_R_LIBS"
 R_LIBS_USER = "$PIXI_R_LIBS"
 
 [tasks]
+create-excel-template = {
+  cmd = "RScript create_excel_template.R",
+  description = "Create an Excel template for translation"
+}
 
 [dependencies]
 # project
