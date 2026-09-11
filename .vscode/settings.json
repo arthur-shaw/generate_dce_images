@@ -1,0 +1,15 @@
+{
+  // point to the default environment's R so that always available
+  "r.rpath.windows": "${workspaceFolder}/.pixi/envs/default/lib/R/bin/R.exe",
+  "r.rpath.linux": "${workspaceFolder}/.pixi/envs/default/bin/R",
+  "r.alwaysUseActiveTerminal": true,
+  // point to dev tooling in the same environment
+  "r.rterm.windows": "${workspaceFolder}/.pixi/envs/default/lib/R/bin/R.exe",
+  "r.rterm.linux": "${workspaceFolder}/.pixi/envs/default/bin/radian",
+  "r.rterm.option": [
+    "--no-save",
+    "--no-restore"
+  ],
+  "r.bracketedPaste": true,
+  // "quarto.path": "${workspaceFolder}/.pixi/envs/default/quarto"
+}
