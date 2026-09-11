@@ -8,9 +8,6 @@
 # Step 1: Setup and load functions
 # ==============================================================================
 
-# Restore the R environment
-renv::restore(prompt = FALSE)
-
 # Load helper functions
 fs::dir_ls(path = "R", regexp = "0[345]_.*\\.R$") |>
   purrr::walk(.f = ~ source(.x))
