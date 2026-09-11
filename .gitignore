@@ -7,3 +7,7 @@ template_*.xlsx
 
 # YAML with new translations to be added
 inst/labels_new_*.yaml
+
+# pixi environments
+.pixi/*
+!.pixi/config.toml

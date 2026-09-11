@@ -1,0 +1,37 @@
+[workspace]
+authors = ["Arthur Shaw <jashaw2002@gmail.com>"]
+channels = ["conda-forge"]
+name = "generate_dce_images"
+platforms = ["win-64"]
+version = "0.1.0"
+
+[activation.env]
+# set the R library folder to where conda installs R
+PIXI_R_LIBS =  "$CONDA_PREFIX/lib/R/library"
+R_LIBS = "$PIXI_R_LIBS"
+R_LIBS_USER = "$PIXI_R_LIBS"
+
+[tasks]
+
+[dependencies]
+# project
+r = "==4.5"
+r-here = "==1.0.2"
+r-fs = "==2.1.0"
+r-purrr = "==1.2.2"
+r-yaml = "==2.3.12"
+r-haven = "==2.5.5"
+r-dplyr = "==1.2.1"
+r-assertr = "==3.0.1"
+r-cli = "==3.6.6"
+r-tidyr = "==1.3.2"
+r-gt = "==1.3.0"
+r-glue = "==1.8.1"
+r-rlang = "==1.3.0"
+r-stringr = "==1.6.0"
+r-webshot2 = "==0.1.2"
+pngquant = "==3.0.3"
+# development environment
+r-languageserver = "*"
+r-httpgd = "*"
+radian = "*"
