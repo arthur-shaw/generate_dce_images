@@ -6,6 +6,8 @@
 # set project parameters
 # ------------------------------------------------------------------------------
 
+proj_country <- ""
+proj_lang <- ""
 
 # note: to set country-language-specific layout paramters, add to layout.yaml
 # this file contains
