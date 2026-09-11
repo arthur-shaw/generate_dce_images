@@ -250,24 +250,13 @@ choices_table <- choices_table |>
     vwidth = viewport_width,
   )
 
-  # construct the file path from the perspective of WSL
-  wsl_path <- paste0(
-    # pre-pend to make it a mounted volume
-    "/mnt/",
-    # convert Windows drive letter to lower case
-    tolower(substr(image_file_path, 1, 1)),
-    # get the rest of the original path, from the 3rd to last path character
-    substr(image_file_path, 3, nchar(image_file_path))
-  )
-
   # run tool for lossy compressiom of PNG files
   base::system2(
-    # call executable in WSL
-    "wsl",
     # compose call
+    "pngquant",
     args = c(
-      "pngquant", "--quality=50-70", "--ext", ".png", "--force",
-      shQuote(wsl_path)
+      "--quality=50-70", "--ext", ".png", "--force",
+      shQuote(image_file_path)
     )
   )
 
