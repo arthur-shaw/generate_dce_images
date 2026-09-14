@@ -110,6 +110,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/cffi-2.1.1-py314h5a2d7ad_3.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/curl-8.22.0-hdb0ef4a_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/fontconfig-2.18.3-hd47e2ca_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/win-64/fzf-0.74.3-h11686cb_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/gcc_impl_win-64-16.2.0-h6b76af2_4.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/gfortran_impl_win-64-16.2.0-h408695e_4.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/gsl-2.7-hdfb1a43_0.tar.bz2
@@ -1527,6 +1528,14 @@ packages:
     - fonts-conda-ecosystem
   size: 217988
   timestamp: 1786667461139
+- conda: https://conda.anaconda.org/conda-forge/win-64/fzf-0.74.3-h11686cb_1.conda
+  sha256: d19df82b54843d55074548bcc84e4e350ee320e5a188c5b57bdcfabbedae6a2b
+  md5: ab78ee25c49943b7567372567858722b
+  license: MIT
+  license_family: MIT
+  run_exports: {}
+  size: 3988571
+  timestamp: 1787825281761
 - conda: https://conda.anaconda.org/conda-forge/win-64/gcc_impl_win-64-16.2.0-h6b76af2_4.conda
   sha256: 47cba5bcea133854795d9d59c45418f6dc7b8c1cd4e4fc505ace35cc519e8615
   md5: 4e090fb7357d7d2917deab17a2968d3c

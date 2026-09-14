@@ -16,6 +16,10 @@ create-excel-template = {
   cmd = "RScript create_excel_template.R",
   description = "Create an Excel template for translation"
 }
+validate-excel-template = {
+  cmd = "RScript validate_template.R",
+  description = "Validate the completed Excel translation template"
+}
 
 [dependencies]
 # project
@@ -39,3 +43,4 @@ pngquant = "==3.0.3"
 r-languageserver = "*"
 r-httpgd = "*"
 radian = "*"
+fzf = ">=0.74.3,<0.75"
