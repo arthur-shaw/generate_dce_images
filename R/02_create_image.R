@@ -2,6 +2,7 @@
 #'
 #' @param df Data frame produced by `prepare_data()`.
 #' @param choice_num Numeric. Number to include in image name.
+#' @param asset_path Character. Path to the directory of logo assets.
 #' @param option_A_text Character. Text to show in choice A column label.
 #' @param option_B_text Character. Text to show in choice B column label.
 #' @param attribute_text Character. Text to show as attribute column label.
@@ -35,6 +36,7 @@
 create_image <- function(
   df,
   choice_num,
+  asset_path,
   option_A_text = "Option A",
   option_B_text = "Option B",
   attribute_text = "Attribute",
@@ -89,7 +91,7 @@ create_image <- function(
       locations = gt::cells_body(columns = icon),
       fn = function(x) {
         gt::local_image(
-          filename = fs::path(proj_dir, "assets", x),
+          filename = fs::path(asset_path, x),
           height = image_height
         )
       }
