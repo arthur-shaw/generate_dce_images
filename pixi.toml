@@ -24,6 +24,10 @@ create-yaml-template = {
   cmd = "RScript create_yaml_template.R",
   description = "Create a YAML file from a Excel translation template"
 }
+generate-images = {
+  cmd = "RScript generate_dce_images.R",
+  description = "Generate DCE images from YAML translations"
+}
 
 [dependencies]
 # project
