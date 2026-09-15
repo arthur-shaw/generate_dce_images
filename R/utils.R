@@ -69,6 +69,168 @@ select_file <- function(
 
 }
 
+#' Get country code from the file name
+#'
+#' @description
+#' Both the Excel and YAML stores of image labels encode
+#' the country name in the file name.
+#'
+#' @param file_name Character. File name--importantly, with extension.
+#'
+#' @return Atomic character vector.
+#'
+#' @importFrom fs path_ext
+#' @importFrom dplyr case_when
+#' @importFrom stringr str_extract
+#' @importFrom cli cli_abort cli_inform
+get_country_code <- function(
+  file_name
+) {
+
+  file_extension <- fs::path_ext(file_name)
+
+  if (file_extension == "") {
+
+    cli::cli_abort(
+      message = c(
+        "x" = "No file extension found in {.arg file_name}",
+        "The program needs the file name with file extension to determine how to find the country code in it"
+      )
+    )
+
+  }
+
+  file_name_template <- dplyr::case_when(
+    file_extension == "xlsx" ~  "(?<=template_)([a-z]{2})(?=_)",
+    file_extension == "yaml" ~  "(?<=labels_new_)([a-z]{2})(?=_)",
+    .default = NA_character_
+  )
+
+  if (is.na(file_name_template)) {
+
+    cli::cli_abort(
+      message = c(
+        "x" = "Unexpected file extension found: {.value {file_extension}}",
+        "This program only supports {.value xlsx} and {.value yaml}  extensions."
+      )
+    )
+
+  }
+
+  country_code <- file_name |>
+    stringr::str_extract(pattern = file_name_template)
+
+  if (is.na(country_code)) {
+    cli::cli_abort(
+      message = c(
+        "x" = "No country code found in the file name.",
+        "i" = "Template names should be {.code template_<cc>_<lc1>_<lc2>.{file_extension}}, where",
+        "*" = "{.code <cc>} is the country code, a lowercase, two-letter code",
+        "*" = "{.code <lc>} is the language code(s), a lowercase, two-letter code and multiple codes are separated by {.code _}"
+      )
+    )
+  } else {
+    cli::cli_inform(
+      message = c(
+        "Country code found: {.code {country_code}}"
+      )
+    )
+  }
+
+  return(country_code)
+
+}
+
+#' Get language code(s) from the file name
+#'
+#' @description
+#' Both the Excel and YAML stores of image labels encode
+#' the language codes in the file name.
+#'
+#' @param file_name Character. File name--importantly, with extension.
+#'
+#' @return Character vector.
+#'
+#' @importFrom fs path_ext
+#' @importFrom dplyr case_when
+#' @importFrom stringr str_extract str_split_1
+#' @importFrom cli cli_abort cli_inform
+get_language_codes <- function(
+  file_name
+) {
+
+  file_extension <- fs::path_ext(file_name)
+
+  if (file_extension == "") {
+
+    cli::cli_abort(
+      message = c(
+        "x" = "No file extension found in {.arg file_name}",
+        "The program needs the file name with file extension to determine how to find the country code in it"
+      )
+    )
+
+  }
+
+  file_name_template <- dplyr::case_when(
+    file_extension == "xlsx" ~ "(?<=template_[a-z]{2}_)([a-z_]+)(?=.xlsx)",
+    file_extension == "yaml" ~  "(?<=labels_new_[a-z]{2}_)([a-z_]+)(?=.yaml)",
+    .default = NA_character_
+  )
+
+  if (is.na(file_name_template)) {
+
+    cli::cli_abort(
+      message = c(
+        "x" = "Unexpected file extension found: {.value {file_extension}}",
+        "This program only supports {.value xlsx} and {.value yaml}  extensions."
+      )
+    )
+
+  }
+
+  language_part <- stringr::str_extract(
+    string = file_name,
+    pattern = file_name_template
+  )
+
+  if (is.na(language_part)) {
+
+    cli::cli_abort(
+      message = c(
+        "x" = "No language component found in the file name."
+      )
+    )
+
+  }
+
+  language_codes <- stringr::str_split_1(
+    string = language_part,
+    pattern = "_"
+  )
+
+  if (any(is.na(language_codes))) {
+    cli::cli_abort(
+      message = c(
+        "x" = "No language code found in the file name.",
+        "i" = "Template names should be {.code template_<cc>_<lc1>_<lc2>.{file_extension}}, where",
+        "*" = "{.code <cc>} is the country code, a lowercase, two-letter code",
+        "*" = "{.code <lc>} is the language code(s), a lowercase, two-letter code and multiple codes are separated by {.code _}"
+      )
+    )
+  } else {
+    n_codes <- length(language_codes)
+    cli::cli_inform(
+      message = c(
+        "Found {n_codes} language code{?s}: {glue::glue_collapse(language_codes, sep = ', ')}"
+      )
+    )
+  }
+
+  return(language_codes)
+
+}
+
 #' Get resolved layout parameters for a country/language
 #'
 #' Starts from defaults, then overlays any country + language overrides.
