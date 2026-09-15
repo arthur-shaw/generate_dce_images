@@ -20,6 +20,10 @@ validate-excel-template = {
   cmd = "RScript validate_template.R",
   description = "Validate the completed Excel translation template"
 }
+create-yaml-template = {
+  cmd = "RScript create_yaml_template.R",
+  description = "Create a YAML file from a Excel translation template"
+}
 
 [dependencies]
 # project
