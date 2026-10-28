@@ -2,7 +2,6 @@
 #'
 #' @param labels Named list. 
 #' @param attribute Character. Name of the attribute.
-#' @param country Character. Name of the country.
 #' @param lang Character. Name of the language
 #' @param value Numeric. Value of the level
 #'
@@ -12,7 +11,6 @@
 get_lbl <- function(
   labels,
   attribute,
-  country,
   lang,
   value
 ) {
@@ -31,43 +29,15 @@ get_lbl <- function(
 
   attribute_node <- tbl_content_node[[attribute]]
 
-  if (attribute == "cost") {
+  if (!lang %in% names(attribute_node)) {
 
-    if (!country %in% names(attribute_node)) {
-
-      cli::cli_abort(
-        message = c(
-          "x" = "Invalid country for {attribute}: {country}"
-        )
+    cli::cli_abort(
+      message = c(
+        "x" = "Invalid language for {attribute}: {lang}"
       )
+    )
 
-    }
-
-    country_node <- attribute_node[[country]]
-
-    if (!lang %in% names(country_node)) {
-
-      cli::cli_abort(
-        message = c(
-          "x" = "Invalid language for {attribute} > {country}: {lang}"
-        )
-      )
-
-    }
-
-    country_node[[lang]][[value+1]]
-
-  } else {
-
-    if (!lang %in% names(attribute_node)) {
-
-      cli::cli_abort(
-        message = c(
-          "x" = "Invalid language for {attribute}: {lang}"
-        )
-      )
-
-    }
+  }
 
   attribute_node[[lang]][[value+1]]
 
@@ -118,7 +88,6 @@ get_tbl_lbl <- function(
 #'
 #' @param df Data frame of numeric attribute level selections.
 #' @param lbls Named list. Contents of `labels.yaml`.
-#' @param country Character. ISO 3166-1 alpha-2 country codes.
 #' @param lang Character. ISO 639-1 language code.
 #'
 #' @return Data frame containing string columns:
@@ -131,7 +100,6 @@ get_tbl_lbl <- function(
 create_str_lbls <- function(
   df,
   lbls,
-  country,
   lang
 ) {
 
@@ -143,7 +111,6 @@ create_str_lbls <- function(
         .fns = ~ get_lbl(
           labels = lbls,
           attribute = dplyr::cur_column(),
-          country = country,
           lang = lang,
           value = .x
         ),

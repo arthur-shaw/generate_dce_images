@@ -23,7 +23,7 @@ generate_images <- function(
   layout_path = here::here("inst", "layout.yaml"),
   data_path = here::here("data", "rce_design_long.dta"),
   asset_path = here::here("assets"),
-  country,
+  country = "ph",
   language,
   image_dir = here::here("images")
 ) {
@@ -59,7 +59,6 @@ choices_df <- data_path |>
   # create new string variables
   create_str_lbls(
     lbls = lbls,
-    country = country,
     lang = language
   ) |>
   # keep only those data needed
