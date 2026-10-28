@@ -15,7 +15,7 @@ prepare_data <- function(
   hours_text,
   location_text,
   benefits_text,
-  salary_icon = "Cost.png",
+  salary_icon = "monthly_salary.png",
   hours_icon = "Time.png",
   location_icon = "Location.png",
   benefits_icon = "Quality.png"
