@@ -21,9 +21,8 @@
 #'    Aborts with `cli_abort()` if validation fails.
 #' 2. Reads each non-Instructions sheet and extracts translations.
 #' 3. Builds a nested list with structure:
-#'    - For tbl_labels: `list(cost = list(en = ..., fr = ..., ...))`, etc.
-#'    - For cost: `list(tbl_content = list(cost = list(ma = list(fr = ..., ar = ..., ...))))`
-#'    - For hours/location/quality: `list(tbl_content = list(hours = list(fr = ..., ...)))`
+#'    - For tbl_labels: `list(salary = list(en = ..., tl = ..., ...))`, etc.
+#'    - For salary/hours/location/benefits: `list(tbl_content = list(hours = list(en = ..., tl = ..., ...)))`
 #' 4. If "en" ∉ languages, the "en" column is NOT included in output.
 #' 5. Serialises to YAML with `yaml::as.yaml()` and prints to console.
 #' 6. If `output_path` is provided, also writes to file.
@@ -88,36 +87,17 @@ template_to_yaml <- function(
   # Process tbl_content sheets
   tbl_content_list <- list()
 
-  for (attr in c("cost", "hours", "location", "quality")) {
+  for (attr in c("salary", "hours", "location", "benefits")) {
 
     if (!(attr %in% sheet_names)) next
 
     df <- readxl::read_xlsx(path, sheet = attr)
 
-    if (attr == "cost") {
-
-      # Cost is country- and language-specific
-      cost_list <- .build_cost_section(
-        df = df,
-        country = country,
-        languages = languages,
-        schema = schema
-      )
-
-      tbl_content_list[[attr]] <- cost_list
-
-    } else {
-
-      # Hours, location, quality are language-specific only
-      attr_list <- .build_lang_section(
-        df = df,
-        languages = languages,
-        schema = schema
-      )
-
-      tbl_content_list[[attr]] <- attr_list
-
-    }
+    tbl_content_list[[attr]] <- .build_lang_section(
+      df = df,
+      languages = languages,
+      schema = schema
+    )
 
   }
 
@@ -178,47 +158,7 @@ template_to_yaml <- function(
 
 }
 
-# Helper: Build cost section (country- and language-specific)
-.build_cost_section <- function(df, country, languages, schema) {
-
-  # Determine translation columns
-  trans_cols <- if ("en" %in% languages) {
-    setdiff(names(df), "key")
-  } else {
-    setdiff(names(df), c("key", "en"))
-  }
-
-  keys <- schema$tbl_content$cost$keys
-
-  # cost → list(country → list(lang → list(key → value)))
-  country_dict <- list()
-
-  for (lang in trans_cols) {
-    lang_dict <- list()
-
-    for (key in keys) {
-      value <- df[df$key == key, lang]
-      if (length(value) == 1 && !is.na(value)) {
-        lang_dict[[key]] <- as.character(value)
-      } else {
-        lang_dict[[key]] <- ""
-      }
-    }
-
-    country_dict[[lang]] <- lang_dict
-  }
-
-  # Return nested structure
-  list(list(country_dict))[[1]]
-  # Actually, we need to wrap this in the country structure
-  # Return as named list: list(ma = list(fr = ..., ar = ...))
-  named_list <- list()
-  named_list[[country]] <- country_dict
-  named_list
-
-}
-
-# Helper: Build hours/location/quality section (language-specific only)
+# Helper: Build hours/location/benefits/salary section (language-specific only)
 .build_lang_section <- function(df, languages, schema) {
 
   # Determine translation columns

@@ -76,14 +76,13 @@ create_excel_template <- function(
     schema = schema,
     labels = labels,
     section = "tbl_labels",
-    country = NULL,
     languages = languages,
     indexed_by = schema$tbl_labels$indexed_by,
     keys = schema$tbl_labels$keys
   )
 
-  # Add tbl_content sheets (cost, hours, location, quality)
-  for (attr in c("cost", "hours", "location", "quality")) {
+  # Add tbl_content sheets (salary, hours, location, benefits)
+  for (attr in c("salary", "hours", "location", "benefits")) {
 
     wb <- .add_content_sheet(
       wb = wb,
@@ -92,7 +91,6 @@ create_excel_template <- function(
       labels = labels,
       section = "tbl_content",
       attribute = attr,
-      country = if (attr == "cost") country else NULL,
       languages = languages,
       indexed_by = schema$tbl_content[[attr]]$indexed_by,
       keys = schema$tbl_content[[attr]]$keys
@@ -106,7 +104,7 @@ create_excel_template <- function(
   cli::cli_inform(
     c(
       "✓" = "Template created: {output_path}",
-      "*" = "Sheets: Instructions, tbl_labels, cost, hours, location, quality",
+      "*" = "Sheets: Instructions, tbl_labels, salary, hours, location, benefits",
       "*" = "Share with translators for {length(languages)} language(s): {paste(languages, collapse = ', ')}"
     )
   )
@@ -132,13 +130,17 @@ create_excel_template <- function(
     "     فقط **في الصباح**",
     "5. Do not leave cells empty in the language columns you are translating.",
     "6. Save the file and return it for validation.",
+    "7. SPECIAL CASE: in the 'salary' sheet, the 'monthly_format' row is not a hourly",
+    "   level like the others. It is a display template substituted with a computed",
+    "   monthly amount, e.g. \"**{amount}** PHP/month\". Keep the literal {amount}",
+    "   placeholder and the ** markers around it; translate only the surrounding text.",
     "",
     "Sheets in this template:",
-    "- tbl_labels: Table column headers (cost, hours, location, quality, attribute, option_a, option_b)",
-    "- cost: Cost levels (lvl_0 through lvl_5) — country- and language-specific",
-    "- hours: Service hours options (only_morning, only_afternoon, all_day)",
-    "- location: Distance options (far, close)",
-    "- quality: Quality levels (not_trained, trained)"
+    "- tbl_labels: Table column headers (salary, hours, location, benefits, attribute, option_a, option_b)",
+    "- salary: Hourly rate reference levels (lvl_0 through lvl_4) plus the monthly_format template",
+    "- hours: Working-hours options (lvl_0 through lvl_3)",
+    "- location: Location options (lvl_0 through lvl_2)",
+    "- benefits: Childcare benefit options (lvl_0 through lvl_3)"
   )
 
   wb <- openxlsx2::wb_add_worksheet(
@@ -181,7 +183,6 @@ create_excel_template <- function(
   labels,
   section,
   attribute = NULL,
-  country = NULL,
   languages,
   indexed_by,
   keys
@@ -199,7 +200,6 @@ create_excel_template <- function(
       labels = labels,
       section = section,
       attribute = attribute,
-      country = country,
       lang = "en",
       key = k
     )
@@ -217,7 +217,6 @@ create_excel_template <- function(
         labels = labels,
         section = section,
         attribute = attribute,
-        country = country,
         lang = lang,
         key = k
       )
@@ -264,7 +263,6 @@ create_excel_template <- function(
   labels,
   section,
   attribute = NULL,
-  country = NULL,
   lang,
   key
 ) {
@@ -278,23 +276,7 @@ create_excel_template <- function(
 
       } else if (section == "tbl_content") {
 
-        if (attribute == "cost") {
-
-          # retrieve country-language-level values if they exist
-          lbls <- labels$tbl_content$cost[[country]][[lang]][[key]]
-
-          # if no values found for English
-          # use template values
-          if (lang == "en" & is.null(lbls)) {
-            lbls <- labels$tbl_content$cost[["_template"]][[lang]][[key]]
-          }
-          lbls
-
-        } else {
-
-          labels$tbl_content[[attribute]][[lang]][[key]]
-
-        }
+        labels$tbl_content[[attribute]][[lang]][[key]]
 
       } else {
 

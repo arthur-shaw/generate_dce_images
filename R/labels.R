@@ -124,10 +124,10 @@ get_tbl_lbl <- function(
 #' @param lang Character. ISO 639-1 language code.
 #'
 #' @return Data frame containing string columns:
-#' - cost_str
+#' - salary_str
 #' - hours_str
 #' - location_str
-#' - quality_str
+#' - benefits_str
 #'
 #' @importFrom dplyr rowwise mutate across cur_column ungroup
 create_str_lbls <- function(
@@ -141,7 +141,7 @@ create_str_lbls <- function(
     dplyr::rowwise() |>
     dplyr::mutate(
       dplyr::across(
-        .cols = c(cost, hours, location, quality),
+        .cols = c(hours, location, benefits),
         .fns = ~ get_lbl(
           labels = lbls,
           attribute = dplyr::cur_column(),

@@ -61,7 +61,7 @@ validate_excel_template <- function(
   sheet_names <- readxl::excel_sheets(path)
 
   # Expected sheets
-  expected_sheets <- c("Instructions", "tbl_labels", "cost", "hours", "location", "quality")
+  expected_sheets <- c("Instructions", "tbl_labels", "salary", "hours", "location", "benefits")
 
   if (!identical(sort(sheet_names), sort(expected_sheets))) {
     cli::cli_warn(

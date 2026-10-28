@@ -1,218 +1,83 @@
 # labels are structured as follows:
 # first, the table stub and column labels (`tbl_labels`)
 # then, the table contents (`tbl_content`)
+# Philippines-only scope: no country dimension anywhere
+# NOTE: tl translations below are drafts for pipeline testing, not reviewed by a native speaker
 
 # indexed by language
 tbl_labels:
-  cost:
-    en: "Childcare services costs"
-    fr: "Coûts des services de garderie"
-    ar: "تكلفة خدمات الحدائق"
-    hi: बाल देखभाल सेवाओं की लागत
-    ta: குழந்தை பராமரிப்பு சேவைகளின் செலவு
-    fj: Na I sau ni veiqaravi vei ira na lalai
-    hf: Childcare sewa keh Kitna lage
+  salary:
+    en: "Monthly salary"
+    tl: "Buwanang sahod"
   hours:
-    en: "Number of available service hours"
-    fr: "Nombre d'heures de service disponibles"
-    ar: "عدد ساعات الخدمة المتاحة"
-    hi: उपलब्ध सेवा के घंटे
-    ta: கிடைக்கும் சேவை நேரங்கள்
-    fj: Na I wiliwili ni auwa e tiko ena veigauna ni veiqaravi
-    hf: Kitna ghanta keh liye rahe
+    en: "Working hours"
+    tl: "Oras ng trabaho"
   location:
     en: "Location"
-    fr: "Emplacement"
-    ar: "الموقع"
-    hi: स्थान
-    ta: இடம்
-    fj: Na vanua
-    hf: Kon jagga
-  quality:
-    en: "Quality"
-    fr: "Qualité"
-    ar: "الجودة"
-    hi: गुणवत्ता
-    ta: தரம்
-    fj: Kena vinaka
-    hf: Kitna acha hai
+    tl: "Lokasyon"
+  benefits:
+    en: "Childcare benefits"
+    tl: "Benepisyo sa pangangalaga ng bata"
   attribute:
     en: "Attribute"
-    fr: "Attribut"
-    ar: "يصف"
-    hi: विशेषता
-    ta: பண்பு
-    fj: Attribute
-    hf: Attribute
+    tl: "Katangian"
   option_a:
     en: "Option A"
-    fr: "Option A"
-    ar: "الخيار أ"
-    hi: विकल्प A
-    ta: விருப்பம் A
-    fj: Option A
-    hf: Option A
+    tl: "Opsyon A"
   option_b:
     en: "Option B"
-    fr: "Option B"
-    ar: "الخيار ب"
-    hi: विकल्प B
-    ta: விருப்பம் B
-    fj: Option B
-    hf: Option B
+    tl: "Opsyon B"
 
-# indexed by country and language
+# indexed by language
 tbl_content:
-  cost:
-    _template:
-      en:
-        lvl_0: "**0** [CURRENCY]/month"
-        lvl_1: "**[AMOUNT]** [CURRENCY]/month"
-        lvl_2: "**[AMOUNT]** [CURRENCY]/month"
-        lvl_3: "**[AMOUNT]** [CURRENCY]/month"
-        lvl_4: "**[AMOUNT]** [CURRENCY]/month"
-        lvl_5: "**[AMOUNT]** [CURRENCY]/month"
-    gn:
-      fr:
-        lvl_0: "**0** GNF/mois"
-        lvl_1: "**75 000** GNF/mois"
-        lvl_2: "**150 000** GNF/mois"
-        lvl_3: "**225 000** GNF/mois"
-        lvl_4: "**300 000** GNF/mois"
-        lvl_5: "**375 000** GNF/mois"
-    ma:
-      ar:
-        lvl_0: "**0** درهم / شهر"
-        lvl_1: "**150** درهم/شهر"
-        lvl_2: "**400** درهم/شهر"
-        lvl_3: "**750** درهم /شهر"
-        lvl_4: "**1250** درهم/شهر"
-        lvl_5: "**3000** درهم/شهر"
-      fr:
-        lvl_0: "**0** MAD / mois"
-        lvl_1: "**150** MAD/mois"
-        lvl_2: "**400** MAD/mois"
-        lvl_3: "**750** MAD /mois"
-        lvl_4: "**1250** MAD/mois"
-        lvl_5: "**3000** MAD/mois"
-    in:
-      hi:
-        lvl_0: '**0** INR / माह'
-        lvl_1: '**500** INR  / माह'
-        lvl_2: '**1000** INR / माह'
-        lvl_3: '**1500** INR / माह'
-        lvl_4: '**2000** INR / माह'
-        lvl_5: '**2500** INR / माह'
-      ta:
-        lvl_0: '**0** INR / மாதம்'
-        lvl_1: '**500** INR / மாதம்'
-        lvl_2: '**1000** INR / மாதம்'
-        lvl_3: '**1500** INR / மாதம்'
-        lvl_4: '**2000** INR / மாதம்'
-        lvl_5: '**2500** INR / மாதம்'
-      en:
-        lvl_0: '**0** INR / month'
-        lvl_1: '**500** INR  / month'
-        lvl_2: '**1000** INR / month'
-        lvl_3: '**1500** INR / month'
-        lvl_4: '**2000** INR / month'
-        lvl_5: '**2500** INR / month'
-    fj:
-      en:
-        lvl_0: '**0** FJD / weekly'
-        lvl_1: '**15** FJD / weekly'
-        lvl_2: '**30** FJD / weekly'
-        lvl_3: '**45** FJD / weekly'
-        lvl_4: '**60** FJD / weekly'
-        lvl_5: '**75** FJD / weekly'
-      fj:
-        lvl_0: '**0** FJD / veimacawa'
-        lvl_1: '**15** FJD / veimacawa'
-        lvl_2: '**30** FJD / veimacawa'
-        lvl_3: '**45** FJD / veimacawa'
-        lvl_4: '**60** FJD / veimacawa'
-        lvl_5: '**75** FJD / veimacawa'
-      hf:
-        lvl_0: '**0** FJD / hafta keh'
-        lvl_1: '**15** FJD / hafta keh'
-        lvl_2: '**30** FJD / hafta keh'
-        lvl_3: '**45** FJD / hafta keh'
-        lvl_4: '**60** FJD / hafta keh'
-        lvl_5: '**75** FJD / hafta keh'
-  # indexed by language
+  # lvl_0..lvl_4 are hourly-rate reference text (translation input only, not rendered)
+  # monthly_format is substituted with the computed monthly amount for the rendered image
+  salary:
+    en:
+      lvl_0: "**200** PHP/hour"
+      lvl_1: "**400** PHP/hour"
+      lvl_2: "**600** PHP/hour"
+      lvl_3: "**800** PHP/hour"
+      lvl_4: "**1000** PHP/hour"
+      monthly_format: "**{amount}** PHP/month"
+    tl:
+      lvl_0: "**200** PHP/oras"
+      lvl_1: "**400** PHP/oras"
+      lvl_2: "**600** PHP/oras"
+      lvl_3: "**800** PHP/oras"
+      lvl_4: "**1000** PHP/oras"
+      monthly_format: "**{amount}** PHP/buwan"
+
   hours:
     en:
-      only_morning: "Only **morning**"
-      only_afternoon: "Only **afternoon**"
-      all_day: "**Morning and afternoon**"
-    fr:
-      only_morning: "Uniquement **le matin**"
-      only_afternoon: "Uniquement **l'après-midi**"
-      all_day: "**Matin et après-midi**"
-    ar:
-      only_morning: "فقط **في الصباح**"
-      only_afternoon: "فقط **بعد الظهر**"
-      all_day: "**الصباح وبعد الظهر**"
-    hi:
-      only_morning: केवल **सुबह**
-      only_afternoon: केवल **दोपहर**
-      all_day: '**सुबह और दोपहर**'
-    ta:
-      only_morning: '**காலை** மட்டும்'
-      only_afternoon: '**மதியம்** மட்டும்'
-      all_day: '**காலை மற்றும மதியம்**'
-    fj:
-      only_morning: E na **Mataka lailai**
-      only_afternoon: E na **Yakavi**
-      all_day: E na **Mataka kei na yakavi**
-    hf:
-      only_morning: Khali **sabere** keh time
-      only_afternoon: Khali **sanja** keh time
-      all_day: '**Sabere aur sanja** keh'
+      lvl_0: "**Full-time** (8 hours per day)"
+      lvl_1: "**Full-time** with flexible working hours"
+      lvl_2: "**Part-time** (4 hours per day)"
+      lvl_3: "**Part-time** with flexible working hours"
+    tl:
+      lvl_0: "**Full-time** (8 oras bawat araw)"
+      lvl_1: "**Full-time** na may flexible na oras ng trabaho"
+      lvl_2: "**Part-time** (4 oras bawat araw)"
+      lvl_3: "**Part-time** na may flexible na oras ng trabaho"
+
   location:
     en:
-      far: "**Far** from home (more than 15 minutes)"
-      close: "**Near** home (less than 15 minutes)"
-    fr:
-      far: "**Loin** de chez moi (à plus de 15 minutes)"
-      close: "**Près** de chez moi (à moins de 15 minutes)"
-    ar:
-      far: "** بعيدة** عن منزلي (أكثر من 15 دقيقة)"
-      close: "**قريبة **من منزلي (أقل من 15 دقيقة)"
-    hi:
-      far: घर से **दूर** (15 मिनट से अधिक)
-      close: घर के **पास** (15 मिनट के भीतर)
-    ta:
-      far: வீட்டிலிருந்து **தூரம்** (15 நிமிடங்களுக்கு மேலே)
-      close: வீட்டுக்கு **அருகில்** (15 நிமிடங்களுக்கு குறைவாக)
-    fj:
-      far: E **yawa** toka mai vale (sivia na tinikalima na miniti kena yawa)
-      close: E **voleka** toka ga e vale (lailai mai na tinikalima na miniti kena
-        yawa)
-    hf:
-      far: Ghar se **door** (pandra minute se jada)
-      close: Ghar keh **nazdik** (pandra minute se kamti)
+      lvl_0: "**Working from home**"
+      lvl_1: "**Within walking distance** from home"
+      lvl_2: "**30 minutes'** drive away from home"
+    tl:
+      lvl_0: "Nagtatrabaho **mula sa bahay**"
+      lvl_1: "**Lakad-lakad lang** ang layo mula sa bahay"
+      lvl_2: "**30 minutong** pagmamaneho mula sa bahay"
 
-  quality:
+  benefits:
     en:
-      not_trained: "With **untrained** staff"
-      trained: "With **trained** staff"
-    fr:
-      not_trained: "Avec un personnel **non-formé**"
-      trained: "Avec un personnel **formé**"
-    ar:
-      not_trained: " دار الحضانة لديها موظفون **غير مدربين**"
-      trained: "ضم مركز الرعاية النهارية موظفين** مدربين** يقدمون أنشطة محفزة"
-    hi:
-      not_trained: '**अप्रशिक्षित** कर्मचारियों के साथ'
-      trained: '**प्रशिक्षित** कर्मचारी के साथ'
-    ta:
-      not_trained: '**பயிற்சி பெறாத** பணியாளர்களுடன்'
-      trained: '**பயிற்சி பெற்ற** பணியாளர்களுடன்'
-    fj:
-      not_trained: Vata kei ira na **dauniveiqaravi era sega ni vulica** na kena cakacaka
-      trained: Vata kei ira na **dauniveiqaravi era vulica** na kena cakacaka kara
-        dau bulia na kena vei walewale eso
-    hf:
-      not_trained: '**Untrained** caregivers se'
-      trained: Koi ek **trained la care giver** jon active rhake ulog keh
+      lvl_0: "**None**"
+      lvl_1: "**High-quality** childcare center provided at the place of work"
+      lvl_2: "Employer will **reimburse** expenses for childcare services or babysitting"
+      lvl_3: "Employer provides a **stipend** for childcare services or babysitters"
+    tl:
+      lvl_0: "**Wala**"
+      lvl_1: "**Mataas na kalidad** na childcare center sa lugar ng trabaho"
+      lvl_2: "**Rerembolsuhin** ng employer ang gastos sa childcare o babysitting"
+      lvl_3: "Magbibigay ang employer ng **stipend** para sa childcare o babysitter"

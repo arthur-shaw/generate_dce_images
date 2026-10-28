@@ -69,15 +69,15 @@ choices_df <- data_path |>
     # choice A (1) or B (2)
     alt,
     # string attribute levels
-    cost = cost_str,
+    salary = salary_str,
     hours = hours_str,
-    location =location_str,
-    quality = quality_str
+    location = location_str,
+    benefits = benefits_str
   ) |>
   # check that all labels contain `*`
   assertr::assert(
     predicate = \(x) grepl(x = x, pattern = "*"),
-    cost, hours, location, quality
+    salary, hours, location, benefits
   )
 
 # ==============================================================================
@@ -103,9 +103,9 @@ purrr::walk(
     # first, extract data for a choice and reshape to the table format
     prepare_data(
       choice_num = .x,
-      cost_text = get_tbl_lbl(
+      salary_text = get_tbl_lbl(
         labels = lbls,
-        attribute = "cost",
+        attribute = "salary",
         lang = language
       ),
       hours_text = get_tbl_lbl(
@@ -118,9 +118,9 @@ purrr::walk(
         attribute = "location",
         lang = language
       ),
-      quality_text = get_tbl_lbl(
+      benefits_text = get_tbl_lbl(
         labels = lbls,
-        attribute = "quality",
+        attribute = "benefits",
         lang = language
       )
     ) |>

@@ -11,14 +11,14 @@
 prepare_data <- function(
   df,
   choice_num,
-  cost_text,
+  salary_text,
   hours_text,
   location_text,
-  quality_text,
-  cost_icon = "Cost.png",
+  benefits_text,
+  salary_icon = "Cost.png",
   hours_icon = "Time.png",
   location_icon = "Location.png",
-  quality_icon = "Quality.png"
+  benefits_icon = "Quality.png"
 ) {
 
   choice_table_df <- df |>
@@ -32,11 +32,11 @@ prepare_data <- function(
     # |           |          |          |
     dplyr::select(
         alt,
-        cost, hours, location, quality
+        salary, hours, location, benefits
     ) |>
     tidyr::pivot_longer(
       cols = c(
-        cost, hours, location, quality
+        salary, hours, location, benefits
       ),
       names_to = "attribute",
       values_to = "value"
@@ -56,10 +56,10 @@ prepare_data <- function(
     # adjust the text of the attributes column
     dplyr::mutate(
       attribute = dplyr::case_when(
-        attribute == "cost" ~ cost_text,
+        attribute == "salary" ~ salary_text,
         attribute == "hours" ~ hours_text,
         attribute == "location" ~ location_text,
-        attribute == "quality" ~ quality_text,
+        attribute == "benefits" ~ benefits_text,
         .default = ""
       )
     ) |>
@@ -90,10 +90,10 @@ prepare_data <- function(
     # add an icons column
     dplyr::mutate(
       icon = dplyr::case_when(
-        attribute == cost_text ~ cost_icon,
+        attribute == salary_text ~ salary_icon,
         attribute == hours_text ~ hours_icon,
         attribute == location_text ~ location_icon,
-        attribute == quality_text ~ quality_icon,
+        attribute == benefits_text ~ benefits_icon,
         .default = ""
       ),
       .before = 1
