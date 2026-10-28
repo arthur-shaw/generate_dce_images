@@ -21,7 +21,7 @@
 generate_images <- function(
   labels_path,
   layout_path = here::here("inst", "layout.yaml"),
-  data_path = here::here("data", "DCE_Childcare_GS.dta"),
+  data_path = here::here("data", "rce_design_long.dta"),
   asset_path = here::here("assets"),
   country,
   language,
