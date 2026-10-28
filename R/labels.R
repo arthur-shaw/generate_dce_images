@@ -69,9 +69,7 @@ get_lbl <- function(
 
     }
 
-    attribute_node[[lang]][[value+1]]
-
-  }
+  attribute_node[[lang]][[value+1]]
 
 }
 

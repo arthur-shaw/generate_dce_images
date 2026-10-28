@@ -16,7 +16,7 @@
 #' 
 #' @importFrom yaml read_yaml
 #' @importFrom haven read_dta
-#' @importFrom dplyr rename select
+#' @importFrom dplyr mutate select
 #' @importFrom assertr assert
 generate_images <- function(
   labels_path,
@@ -50,11 +50,12 @@ layout_params <- get_layout_params(
 
 choices_df <- data_path |>
 	haven::read_dta() |>
-  # rename to match name of key in labels
-  dplyr::rename(cost = childcare) |>
-	# remove string values
-  # these will be replaced with language specific versions
-  dplyr::select(-dplyr::ends_with("_str")) |>
+  # recode business-facing 1-based levels to the 0-based levels get_lbl() expects
+  # (location is also redefined 1-based here; benefits is already 0-based)
+  dplyr::mutate(
+    salary = salary - 1,
+    hours = hours - 1
+  ) |>
   # create new string variables
   create_str_lbls(
     lbls = lbls,
