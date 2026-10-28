@@ -50,6 +50,13 @@ layout_params <- get_layout_params(
 
 choices_df <- data_path |>
 	haven::read_dta() |>
+  # change column names to meet expectations of program
+  dplyr::rename(
+    salary = wage_lvl,
+    hours = hours_lvl,
+    location = loc_lvl,
+    benefits = cc_lvl
+  ) |>
   # recode business-facing 1-based levels to the 0-based levels get_lbl() expects
   # (location is also redefined 1-based here; benefits is already 0-based)
   dplyr::mutate(
