@@ -16,15 +16,8 @@ tbl_labels:
 tbl_content:
   salary:
     indexed_by: [language]
-    # lvl_0..lvl_4: hourly rate reference text (translation input)
-    # monthly_format: display wrapper substituted with the computed monthly amount
     keys:
-      - lvl_0
-      - lvl_1
-      - lvl_2
-      - lvl_3
-      - lvl_4
-      - monthly_format
+      - salary_expr
 
   hours:
     indexed_by: [language]

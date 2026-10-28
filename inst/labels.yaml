@@ -34,19 +34,9 @@ tbl_content:
   # monthly_format is substituted with the computed monthly amount for the rendered image
   salary:
     en:
-      lvl_0: "**200** PHP/hour"
-      lvl_1: "**400** PHP/hour"
-      lvl_2: "**600** PHP/hour"
-      lvl_3: "**800** PHP/hour"
-      lvl_4: "**1000** PHP/hour"
-      monthly_format: "**{amount}** PHP/month"
+      salary_expr: "**{salary_month}** PHP/month"
     tl:
-      lvl_0: "**200** PHP/oras"
-      lvl_1: "**400** PHP/oras"
-      lvl_2: "**600** PHP/oras"
-      lvl_3: "**800** PHP/oras"
-      lvl_4: "**1000** PHP/oras"
-      monthly_format: "**{amount}** PHP/buwan"
+      salary_expr: "**{salary_month}** PHP/buwan"
 
   hours:
     en:

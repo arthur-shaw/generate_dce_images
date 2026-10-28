@@ -103,6 +103,8 @@ create_str_lbls <- function(
   lang
 ) {
 
+  salary_lbl_expr <- lbls[["tbl_content"]][["salary"]][[lang]][["salary_expr"]]
+
   df_w_strs <- df |>
     dplyr::rowwise() |>
     dplyr::mutate(
@@ -115,7 +117,8 @@ create_str_lbls <- function(
           value = .x
         ),
         .names = "{.col}_str"
-      )
+      ),
+      salary_str = glue::glue(salary_lbl_expr)
     ) |>
     dplyr::ungroup()
 
